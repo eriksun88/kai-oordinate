@@ -30,10 +30,9 @@ namespace menu
         private void InitializeComponent()
         {
             this.lstLocation = new System.Windows.Forms.ListBox();
-            this.lblLocationID = new System.Windows.Forms.Label();
+            this.lblLocationNo = new System.Windows.Forms.Label();
             this.lblLocationName = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
-            this.txtLocationID = new System.Windows.Forms.TextBox();
             this.txtLocationName = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.btnReturn = new FontAwesome.Sharp.IconButton();
@@ -42,6 +41,7 @@ namespace menu
             this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.btnDown = new FontAwesome.Sharp.IconButton();
             this.btnUp = new FontAwesome.Sharp.IconButton();
+            this.lblLocationID = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstLocation
@@ -52,15 +52,15 @@ namespace menu
             this.lstLocation.Size = new System.Drawing.Size(239, 277);
             this.lstLocation.TabIndex = 1;
             // 
-            // lblLocationID
+            // lblLocationNo
             // 
-            this.lblLocationID.AutoSize = true;
-            this.lblLocationID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocationID.Location = new System.Drawing.Point(344, 27);
-            this.lblLocationID.Name = "lblLocationID";
-            this.lblLocationID.Size = new System.Drawing.Size(103, 24);
-            this.lblLocationID.TabIndex = 10;
-            this.lblLocationID.Text = "Locaiton ID";
+            this.lblLocationNo.AutoSize = true;
+            this.lblLocationNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocationNo.Location = new System.Drawing.Point(344, 27);
+            this.lblLocationNo.Name = "lblLocationNo";
+            this.lblLocationNo.Size = new System.Drawing.Size(103, 24);
+            this.lblLocationNo.TabIndex = 10;
+            this.lblLocationNo.Text = "Locaiton ID";
             // 
             // lblLocationName
             // 
@@ -81,13 +81,6 @@ namespace menu
             this.lblAddress.Size = new System.Drawing.Size(80, 24);
             this.lblAddress.TabIndex = 12;
             this.lblAddress.Text = "Address";
-            // 
-            // txtLocationID
-            // 
-            this.txtLocationID.Location = new System.Drawing.Point(453, 27);
-            this.txtLocationID.Name = "txtLocationID";
-            this.txtLocationID.Size = new System.Drawing.Size(146, 20);
-            this.txtLocationID.TabIndex = 14;
             // 
             // txtLocationName
             // 
@@ -133,6 +126,7 @@ namespace menu
             this.btnDelete.Text = "Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -147,6 +141,7 @@ namespace menu
             this.btnUpdate.Text = "Update";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -161,6 +156,7 @@ namespace menu
             this.btnAdd.Text = "Add";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDown
             // 
@@ -192,12 +188,22 @@ namespace menu
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
+            // lblLocationID
+            // 
+            this.lblLocationID.AutoSize = true;
+            this.lblLocationID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocationID.Location = new System.Drawing.Point(456, 27);
+            this.lblLocationID.Name = "lblLocationID";
+            this.lblLocationID.Size = new System.Drawing.Size(0, 24);
+            this.lblLocationID.TabIndex = 29;
+            // 
             // LocationsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblLocationID);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -206,13 +212,13 @@ namespace menu
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtLocationName);
-            this.Controls.Add(this.txtLocationID);
             this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.lblLocationName);
-            this.Controls.Add(this.lblLocationID);
+            this.Controls.Add(this.lblLocationNo);
             this.Controls.Add(this.lstLocation);
             this.Name = "LocationsForm";
             this.Text = "Locations Management";
+            this.Load += new System.EventHandler(this.LocationsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,10 +227,9 @@ namespace menu
         #endregion
 
         private System.Windows.Forms.ListBox lstLocation;
-        private System.Windows.Forms.Label lblLocationID;
+        private System.Windows.Forms.Label lblLocationNo;
         private System.Windows.Forms.Label lblLocationName;
         private System.Windows.Forms.Label lblAddress;
-        private System.Windows.Forms.TextBox txtLocationID;
         private System.Windows.Forms.TextBox txtLocationName;
         private System.Windows.Forms.TextBox txtAddress;
         private FontAwesome.Sharp.IconButton btnReturn;
@@ -233,5 +238,6 @@ namespace menu
         private FontAwesome.Sharp.IconButton btnAdd;
         private FontAwesome.Sharp.IconButton btnDown;
         private FontAwesome.Sharp.IconButton btnUp;
+        private System.Windows.Forms.Label lblLocationID;
     }
 }

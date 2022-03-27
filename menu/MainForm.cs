@@ -42,7 +42,7 @@ namespace menu
         private void btnLocations_Click(object sender, EventArgs e)
         {
             if(locationsForm == null)
-             locationsForm = new LocationsForm();
+             locationsForm = new LocationsForm(DM, this);
             locationsForm.ShowDialog();
         }
 
