@@ -27,8 +27,8 @@ namespace menu
 
         private void btnKai_Click(object sender, EventArgs e)
         {
-            if(kaiForm == null)
-             kaiForm = new KaiForm();
+            if (kaiForm == null)
+                kaiForm = new KaiForm(DM, this);
             kaiForm.ShowDialog();
         }
 

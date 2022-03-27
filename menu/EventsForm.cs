@@ -129,9 +129,10 @@ namespace menu
         {
             DataRow deleteEventRow = DM.dtEvent.Rows[currencyManager.Position];
             DataRow[] EventRegisterRow = DM.dtEventRegister.Select("EventID = " + lblEventID.Text);
-            if (EventRegisterRow.Length != 0)
+            DataRow[] KaiRow = DM.dtKai.Select("EventID = " + lblEventID.Text);
+            if (EventRegisterRow.Length != 0 && KaiRow.Length != 0)
             {
-                MessageBox.Show("You may only delete Event that are not allocated to Register", "Error");
+                MessageBox.Show("You may only delete Event that are not allocated to Register and Kai", "Error");
             }
             else
             {
