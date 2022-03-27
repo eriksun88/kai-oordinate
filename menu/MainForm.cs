@@ -68,7 +68,7 @@ namespace menu
         private void btnWhanau_Click(object sender, EventArgs e)
         {
             if (whanauForm == null)
-                whanauForm = new WhanauForm();
+                whanauForm = new WhanauForm(DM, this);
             whanauForm.ShowDialog();
         }
 

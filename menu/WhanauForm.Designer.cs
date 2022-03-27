@@ -30,24 +30,24 @@ namespace menu
         private void InitializeComponent()
         {
             this.lstWhanau = new System.Windows.Forms.ListBox();
-            this.lblWhanauID = new System.Windows.Forms.Label();
+            this.lblWhanauNo = new System.Windows.Forms.Label();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lblLastName = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
-            this.txtEventID = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.btnUp = new FontAwesome.Sharp.IconButton();
             this.btnDown = new FontAwesome.Sharp.IconButton();
             this.btnReturn = new FontAwesome.Sharp.IconButton();
             this.btnDelete = new FontAwesome.Sharp.IconButton();
             this.btnUpdate = new FontAwesome.Sharp.IconButton();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
+            this.lblWhanauID = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstWhanau
@@ -55,18 +55,20 @@ namespace menu
             this.lstWhanau.FormattingEnabled = true;
             this.lstWhanau.Location = new System.Drawing.Point(28, 26);
             this.lstWhanau.Name = "lstWhanau";
+            this.lstWhanau.ScrollAlwaysVisible = true;
             this.lstWhanau.Size = new System.Drawing.Size(239, 277);
             this.lstWhanau.TabIndex = 1;
+            this.lstWhanau.SelectedIndexChanged += new System.EventHandler(this.lstWhanau_SelectedIndexChanged);
             // 
-            // lblWhanauID
+            // lblWhanauNo
             // 
-            this.lblWhanauID.AutoSize = true;
-            this.lblWhanauID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWhanauID.Location = new System.Drawing.Point(367, 26);
-            this.lblWhanauID.Name = "lblWhanauID";
-            this.lblWhanauID.Size = new System.Drawing.Size(103, 24);
-            this.lblWhanauID.TabIndex = 10;
-            this.lblWhanauID.Text = "Whanau ID";
+            this.lblWhanauNo.AutoSize = true;
+            this.lblWhanauNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWhanauNo.Location = new System.Drawing.Point(367, 26);
+            this.lblWhanauNo.Name = "lblWhanauNo";
+            this.lblWhanauNo.Size = new System.Drawing.Size(103, 24);
+            this.lblWhanauNo.TabIndex = 10;
+            this.lblWhanauNo.Text = "Whanau ID";
             // 
             // lblFirstName
             // 
@@ -118,47 +120,40 @@ namespace menu
             this.lblAddress.TabIndex = 15;
             this.lblAddress.Text = "Address";
             // 
-            // txtEventID
+            // txtFirstName
             // 
-            this.txtEventID.Location = new System.Drawing.Point(489, 26);
-            this.txtEventID.Name = "txtEventID";
-            this.txtEventID.Size = new System.Drawing.Size(146, 20);
-            this.txtEventID.TabIndex = 16;
+            this.txtFirstName.Location = new System.Drawing.Point(489, 80);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(146, 20);
+            this.txtFirstName.TabIndex = 17;
             // 
-            // textBox1
+            // txtLastName
             // 
-            this.textBox1.Location = new System.Drawing.Point(489, 80);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(146, 20);
-            this.textBox1.TabIndex = 17;
+            this.txtLastName.Location = new System.Drawing.Point(489, 134);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(146, 20);
+            this.txtLastName.TabIndex = 18;
             // 
-            // textBox2
+            // txtEmail
             // 
-            this.textBox2.Location = new System.Drawing.Point(489, 134);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(146, 20);
-            this.textBox2.TabIndex = 18;
+            this.txtEmail.Location = new System.Drawing.Point(489, 181);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(146, 20);
+            this.txtEmail.TabIndex = 19;
             // 
-            // textBox3
+            // txtPhone
             // 
-            this.textBox3.Location = new System.Drawing.Point(489, 181);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(146, 20);
-            this.textBox3.TabIndex = 19;
+            this.txtPhone.Location = new System.Drawing.Point(489, 228);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(146, 20);
+            this.txtPhone.TabIndex = 20;
             // 
-            // textBox4
+            // txtAddress
             // 
-            this.textBox4.Location = new System.Drawing.Point(489, 228);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(146, 20);
-            this.textBox4.TabIndex = 20;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(489, 283);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(146, 20);
-            this.textBox5.TabIndex = 21;
+            this.txtAddress.Location = new System.Drawing.Point(489, 283);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(146, 20);
+            this.txtAddress.TabIndex = 21;
             // 
             // btnUp
             // 
@@ -173,6 +168,7 @@ namespace menu
             this.btnUp.Text = "Up";
             this.btnUp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnDown
             // 
@@ -187,6 +183,7 @@ namespace menu
             this.btnDown.Text = "Down";
             this.btnDown.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
             // btnReturn
             // 
@@ -216,6 +213,7 @@ namespace menu
             this.btnDelete.Text = "Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -230,6 +228,7 @@ namespace menu
             this.btnUpdate.Text = "Update";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -244,6 +243,17 @@ namespace menu
             this.btnAdd.Text = "Add";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // lblWhanauID
+            // 
+            this.lblWhanauID.AutoSize = true;
+            this.lblWhanauID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWhanauID.Location = new System.Drawing.Point(485, 26);
+            this.lblWhanauID.Name = "lblWhanauID";
+            this.lblWhanauID.Size = new System.Drawing.Size(40, 24);
+            this.lblWhanauID.TabIndex = 28;
+            this.lblWhanauID.Text = "null";
             // 
             // WhanauForm
             // 
@@ -251,27 +261,28 @@ namespace menu
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblWhanauID);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.txtEventID);
+            this.Controls.Add(this.txtAddress);
+            this.Controls.Add(this.txtPhone);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.lblFirstName);
-            this.Controls.Add(this.lblWhanauID);
+            this.Controls.Add(this.lblWhanauNo);
             this.Controls.Add(this.lstWhanau);
             this.Name = "WhanauForm";
             this.Text = "Whanau Management";
+            this.Load += new System.EventHandler(this.WhanauForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,23 +291,23 @@ namespace menu
         #endregion
 
         private System.Windows.Forms.ListBox lstWhanau;
-        private System.Windows.Forms.Label lblWhanauID;
+        private System.Windows.Forms.Label lblWhanauNo;
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.Label lblLastName;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Label lblAddress;
-        private System.Windows.Forms.TextBox txtEventID;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.TextBox txtAddress;
         private FontAwesome.Sharp.IconButton btnUp;
         private FontAwesome.Sharp.IconButton btnDown;
         private FontAwesome.Sharp.IconButton btnReturn;
         private FontAwesome.Sharp.IconButton btnDelete;
         private FontAwesome.Sharp.IconButton btnUpdate;
         private FontAwesome.Sharp.IconButton btnAdd;
+        private System.Windows.Forms.Label lblWhanauID;
     }
 }
