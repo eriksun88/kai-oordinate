@@ -36,7 +36,6 @@ namespace menu
             this.lblEventDate = new System.Windows.Forms.Label();
             this.txtEventName = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
-            this.txtEventDate = new System.Windows.Forms.TextBox();
             this.btnUp = new FontAwesome.Sharp.IconButton();
             this.btnDown = new FontAwesome.Sharp.IconButton();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
@@ -44,6 +43,7 @@ namespace menu
             this.btnDelete = new FontAwesome.Sharp.IconButton();
             this.btnReturn = new FontAwesome.Sharp.IconButton();
             this.lblEventID = new System.Windows.Forms.Label();
+            this.dtpEventDate = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // lstEvent
@@ -108,13 +108,6 @@ namespace menu
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(146, 20);
             this.txtLocation.TabIndex = 15;
-            // 
-            // txtEventDate
-            // 
-            this.txtEventDate.Location = new System.Drawing.Point(447, 242);
-            this.txtEventDate.Name = "txtEventDate";
-            this.txtEventDate.Size = new System.Drawing.Size(146, 20);
-            this.txtEventDate.TabIndex = 16;
             // 
             // btnUp
             // 
@@ -216,12 +209,22 @@ namespace menu
             this.lblEventID.TabIndex = 23;
             this.lblEventID.Click += new System.EventHandler(this.label1_Click);
             // 
+            // dtpEventDate
+            // 
+            this.dtpEventDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpEventDate.Location = new System.Drawing.Point(447, 242);
+            this.dtpEventDate.Name = "dtpEventDate";
+            this.dtpEventDate.Size = new System.Drawing.Size(181, 20);
+            this.dtpEventDate.TabIndex = 25;
+            this.dtpEventDate.Value = new System.DateTime(2022, 3, 28, 0, 0, 0, 0);
+            // 
             // EventsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dtpEventDate);
             this.Controls.Add(this.lblEventID);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnDelete);
@@ -229,7 +232,6 @@ namespace menu
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
-            this.Controls.Add(this.txtEventDate);
             this.Controls.Add(this.txtLocation);
             this.Controls.Add(this.txtEventName);
             this.Controls.Add(this.lblEventDate);
@@ -254,7 +256,6 @@ namespace menu
         private System.Windows.Forms.Label lblEventDate;
         private System.Windows.Forms.TextBox txtEventName;
         private System.Windows.Forms.TextBox txtLocation;
-        private System.Windows.Forms.TextBox txtEventDate;
         private FontAwesome.Sharp.IconButton btnUp;
         private FontAwesome.Sharp.IconButton btnDown;
         private FontAwesome.Sharp.IconButton btnAdd;
@@ -262,5 +263,6 @@ namespace menu
         private FontAwesome.Sharp.IconButton btnDelete;
         private FontAwesome.Sharp.IconButton btnReturn;
         private System.Windows.Forms.Label lblEventID;
+        private System.Windows.Forms.DateTimePicker dtpEventDate;
     }
 }

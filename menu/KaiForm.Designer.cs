@@ -38,7 +38,6 @@ namespace menu
             this.lblServingQuantity = new System.Windows.Forms.Label();
             this.txtEvent = new System.Windows.Forms.TextBox();
             this.txtKaiName = new System.Windows.Forms.TextBox();
-            this.txtPreparationTime = new System.Windows.Forms.TextBox();
             this.txtServingQuantity = new System.Windows.Forms.TextBox();
             this.btnDelete = new FontAwesome.Sharp.IconButton();
             this.btnUpdate = new FontAwesome.Sharp.IconButton();
@@ -48,6 +47,8 @@ namespace menu
             this.btnUp = new FontAwesome.Sharp.IconButton();
             this.lblKaiID = new System.Windows.Forms.Label();
             this.cbxPreparationRequired = new System.Windows.Forms.CheckBox();
+            this.nudPreparationTime = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPreparationTime)).BeginInit();
             this.SuspendLayout();
             // 
             // lstKai
@@ -133,13 +134,6 @@ namespace menu
             this.txtKaiName.Name = "txtKaiName";
             this.txtKaiName.Size = new System.Drawing.Size(146, 20);
             this.txtKaiName.TabIndex = 9;
-            // 
-            // txtPreparationTime
-            // 
-            this.txtPreparationTime.Location = new System.Drawing.Point(527, 238);
-            this.txtPreparationTime.Name = "txtPreparationTime";
-            this.txtPreparationTime.Size = new System.Drawing.Size(146, 20);
-            this.txtPreparationTime.TabIndex = 11;
             // 
             // txtServingQuantity
             // 
@@ -256,12 +250,20 @@ namespace menu
             this.cbxPreparationRequired.TabIndex = 20;
             this.cbxPreparationRequired.UseVisualStyleBackColor = true;
             // 
+            // nudPreparationTime
+            // 
+            this.nudPreparationTime.Location = new System.Drawing.Point(527, 233);
+            this.nudPreparationTime.Name = "nudPreparationTime";
+            this.nudPreparationTime.Size = new System.Drawing.Size(120, 20);
+            this.nudPreparationTime.TabIndex = 21;
+            // 
             // KaiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.nudPreparationTime);
             this.Controls.Add(this.cbxPreparationRequired);
             this.Controls.Add(this.lblKaiID);
             this.Controls.Add(this.btnDelete);
@@ -271,7 +273,6 @@ namespace menu
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.txtServingQuantity);
-            this.Controls.Add(this.txtPreparationTime);
             this.Controls.Add(this.txtKaiName);
             this.Controls.Add(this.txtEvent);
             this.Controls.Add(this.lblServingQuantity);
@@ -284,6 +285,7 @@ namespace menu
             this.Name = "KaiForm";
             this.Text = "Kai Management";
             this.Load += new System.EventHandler(this.KaiForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudPreparationTime)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,7 +302,6 @@ namespace menu
         private System.Windows.Forms.Label lblServingQuantity;
         private System.Windows.Forms.TextBox txtEvent;
         private System.Windows.Forms.TextBox txtKaiName;
-        private System.Windows.Forms.TextBox txtPreparationTime;
         private System.Windows.Forms.TextBox txtServingQuantity;
         private FontAwesome.Sharp.IconButton btnUp;
         private FontAwesome.Sharp.IconButton btnDown;
@@ -310,5 +311,6 @@ namespace menu
         private FontAwesome.Sharp.IconButton btnDelete;
         private System.Windows.Forms.Label lblKaiID;
         private System.Windows.Forms.CheckBox cbxPreparationRequired;
+        private System.Windows.Forms.NumericUpDown nudPreparationTime;
     }
 }

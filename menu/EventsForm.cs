@@ -28,7 +28,7 @@ namespace menu
             lblEventID.DataBindings.Add("Text", DM.dsKaiOordinate, "Event.EventID");
             txtEventName.DataBindings.Add("Text", DM.dsKaiOordinate, "Event.EventName");
             txtLocation.DataBindings.Add("Text", DM.dsKaiOordinate, "Event.LocationID");
-            txtEventDate.DataBindings.Add("Text", DM.dsKaiOordinate, "Event.EventDate");
+            dtpEventDate.DataBindings.Add("text", DM.dsKaiOordinate, "Event.EventDate");
             lstEvent.DataSource = DM.dsKaiOordinate;
             lstEvent.DisplayMember = "Event.EventName";
             lstEvent.ValueMember = "Event.EventName";
@@ -70,7 +70,7 @@ namespace menu
         {
             lblEventID.Text = null;
             DataRow newEventRow = DM.dtEvent.NewRow();
-            if ((txtEventName.Text == "") || (txtLocation.Text == "") || (txtEventDate.Text == ""))
+            if ((txtEventName.Text == "") || (txtLocation.Text == "") || (dtpEventDate.Text == ""))
             {
                 MessageBox.Show("You must enter a value for each of the text fields", "Error");
                 return;
@@ -82,7 +82,7 @@ namespace menu
             }
             newEventRow["EventName"] = txtEventName.Text;
             newEventRow["LocationID"] = Convert.ToInt32(txtLocation.Text);
-            newEventRow["EventDate"] = Convert.ToDateTime(txtEventDate.Text);
+            newEventRow["EventDate"] = dtpEventDate.Text;
             DM.dtEvent.Rows.Add(newEventRow);
             DM.UpdateEvent();
             MessageBox.Show("Event added successfully", "Success");
@@ -96,7 +96,7 @@ namespace menu
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             DataRow updateEventRow = DM.dtEvent.Rows[currencyManager.Position];
-            if ((txtEventName.Text == "") || (txtLocation.Text == "")||(txtEventDate.Text == ""))
+            if ((txtEventName.Text == "") || (txtLocation.Text == "")||(dtpEventDate.Text == ""))
             {
                 MessageBox.Show("You must type in a EventName description, Location and EventDate", "Error");
                 return;
@@ -109,7 +109,7 @@ namespace menu
 
             updateEventRow["EventName"] = txtEventName.Text;
             updateEventRow["LocationID"] = Convert.ToInt32(txtLocation.Text);
-            updateEventRow["EventDate"] = Convert.ToDateTime(txtEventDate.Text);
+            updateEventRow["EventDate"] = dtpEventDate.Text;
             currencyManager.EndCurrentEdit();
             DM.UpdateEvent();
             MessageBox.Show("Event updated successfully", "Success");           

@@ -28,8 +28,8 @@ namespace menu
             txtEvent.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.EventID");
             txtKaiName.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.KaiName");
             cbxPreparationRequired.DataBindings.Add("Checked", DM.dsKaiOordinate, "Kai.PreparationRequired");
-            txtPreparationTime.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.PreparationMinutes");
             txtServingQuantity.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.ServeQuantity");
+            nudPreparationTime.DataBindings.Add("Value", DM.dsKaiOordinate, "Kai.PreparationMinutes");
             lstKai.DataSource = DM.dsKaiOordinate;
             lstKai.DisplayMember = "Kai.KaiName";
             lstKai.ValueMember = "Kai.KaiName";
@@ -76,10 +76,14 @@ namespace menu
         {
             lblKaiID.Text = null;
             DataRow newKaiRow = DM.dtKai.NewRow();
-            if ((txtEvent.Text == "") || (txtKaiName.Text == "") 
-                || (txtPreparationTime.Text == "") || (txtServingQuantity.Text == ""))
+            if ((txtEvent.Text == "") || (txtKaiName.Text == "") || (txtServingQuantity.Text == ""))
             {
                 MessageBox.Show("You must enter a value for each of the text fields", "Error");
+                return;
+            }
+            if (nudPreparationTime.Value <= 0)
+            {
+                MessageBox.Show("You must enter a valid Preparation Minutess that greater than 0", "Error");
                 return;
             }
             if (!IsValidEvent(Convert.ToInt32(txtEvent.Text)))
@@ -90,7 +94,7 @@ namespace menu
             newKaiRow["EventID"] = Convert.ToInt32(txtEvent.Text);
             newKaiRow["KaiName"] = txtKaiName.Text;
             newKaiRow["PreparationRequired"] = cbxPreparationRequired.Checked;
-            newKaiRow["PreparationMinutes"] = Convert.ToInt32(txtPreparationTime.Text);
+            newKaiRow["PreparationMinutes"] = nudPreparationTime.Value;
             newKaiRow["ServeQuantity"] = Convert.ToInt32(txtServingQuantity.Text);         
             DM.dtKai.Rows.Add(newKaiRow);
             DM.UpdateKai();
@@ -109,15 +113,14 @@ namespace menu
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             DataRow updateKaiRow = DM.dtKai.Rows[currencyManager.Position];
-            if ((txtEvent.Text == "") || (txtKaiName.Text == "")
-                || (txtPreparationTime.Text == "") || (txtServingQuantity.Text == ""))
+            if ((txtEvent.Text == "") || (txtKaiName.Text == "") || (txtServingQuantity.Text == ""))
             {
                 MessageBox.Show("You must type in a EventID, KaiName, Preparation Time and Serving Quantity", "Error");
                 return;
             }
-            if (!IsValidEvent(Convert.ToInt32(txtEvent.Text)))
+            if (nudPreparationTime.Value <= 0)
             {
-                MessageBox.Show("You may only add Kai to an exist Event", "Error");
+                MessageBox.Show("You must enter a valid Preparation Minutess that greater than 0", "Error");
                 return;
             }
             if (!IsValidEvent(Convert.ToInt32(txtEvent.Text)))
@@ -128,7 +131,7 @@ namespace menu
             updateKaiRow["EventID"] = Convert.ToInt32(txtEvent.Text);
             updateKaiRow["KaiName"] = txtKaiName.Text;
             updateKaiRow["PreparationRequired"] = cbxPreparationRequired.Checked;
-            updateKaiRow["PreparationMinutes"] = Convert.ToInt32(txtPreparationTime.Text);
+            updateKaiRow["PreparationMinutes"] = nudPreparationTime.Value;
             updateKaiRow["ServeQuantity"] = Convert.ToInt32(txtServingQuantity.Text);
             currencyManager.EndCurrentEdit();
             DM.UpdateKai();
