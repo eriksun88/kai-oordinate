@@ -28,7 +28,7 @@ namespace menu
             txtEvent.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.EventID");
             txtKaiName.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.KaiName");
             cbxPreparationRequired.DataBindings.Add("Checked", DM.dsKaiOordinate, "Kai.PreparationRequired");
-            txtServingQuantity.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.ServeQuantity");
+            nudServingQuantity.DataBindings.Add("Value", DM.dsKaiOordinate, "Kai.ServeQuantity");
             nudPreparationTime.DataBindings.Add("Value", DM.dsKaiOordinate, "Kai.PreparationMinutes");
             lstKai.DataSource = DM.dsKaiOordinate;
             lstKai.DisplayMember = "Kai.KaiName";
@@ -76,14 +76,14 @@ namespace menu
         {
             lblKaiID.Text = null;
             DataRow newKaiRow = DM.dtKai.NewRow();
-            if ((txtEvent.Text == "") || (txtKaiName.Text == "") || (txtServingQuantity.Text == ""))
+            if ((txtEvent.Text == "") || (txtKaiName.Text == ""))
             {
                 MessageBox.Show("You must enter a value for each of the text fields", "Error");
                 return;
             }
-            if (nudPreparationTime.Value <= 0)
+            if (nudPreparationTime.Value <= 0 || nudServingQuantity.Value <= 0 )
             {
-                MessageBox.Show("You must enter a valid Preparation Minutess that greater than 0", "Error");
+                MessageBox.Show("You must enter a valid Preparation Minutess and Serving Quantity that greater than 0", "Error");
                 return;
             }
             if (!IsValidEvent(Convert.ToInt32(txtEvent.Text)))
@@ -94,8 +94,8 @@ namespace menu
             newKaiRow["EventID"] = Convert.ToInt32(txtEvent.Text);
             newKaiRow["KaiName"] = txtKaiName.Text;
             newKaiRow["PreparationRequired"] = cbxPreparationRequired.Checked;
-            newKaiRow["PreparationMinutes"] = nudPreparationTime.Value;
-            newKaiRow["ServeQuantity"] = Convert.ToInt32(txtServingQuantity.Text);         
+            newKaiRow["PreparationMinutes"] = Convert.ToInt32(nudPreparationTime.Value); ;
+            newKaiRow["ServeQuantity"] = Convert.ToInt32(nudServingQuantity.Value);         
             DM.dtKai.Rows.Add(newKaiRow);
             DM.UpdateKai();
             MessageBox.Show("Kai added successfully", "Success");
@@ -113,14 +113,14 @@ namespace menu
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             DataRow updateKaiRow = DM.dtKai.Rows[currencyManager.Position];
-            if ((txtEvent.Text == "") || (txtKaiName.Text == "") || (txtServingQuantity.Text == ""))
+            if ((txtEvent.Text == "") || (txtKaiName.Text == ""))
             {
-                MessageBox.Show("You must type in a EventID, KaiName, Preparation Time and Serving Quantity", "Error");
+                MessageBox.Show("You must type in a EventID and  KaiName", "Error");
                 return;
             }
-            if (nudPreparationTime.Value <= 0)
+            if (nudPreparationTime.Value <= 0|| nudServingQuantity.Value<=0)
             {
-                MessageBox.Show("You must enter a valid Preparation Minutess that greater than 0", "Error");
+                MessageBox.Show("You must enter a valid Preparation Minutess and Serving Quantity that greater than 0", "Error");
                 return;
             }
             if (!IsValidEvent(Convert.ToInt32(txtEvent.Text)))
@@ -131,8 +131,8 @@ namespace menu
             updateKaiRow["EventID"] = Convert.ToInt32(txtEvent.Text);
             updateKaiRow["KaiName"] = txtKaiName.Text;
             updateKaiRow["PreparationRequired"] = cbxPreparationRequired.Checked;
-            updateKaiRow["PreparationMinutes"] = nudPreparationTime.Value;
-            updateKaiRow["ServeQuantity"] = Convert.ToInt32(txtServingQuantity.Text);
+            updateKaiRow["PreparationMinutes"] = Convert.ToInt32(nudPreparationTime.Value);
+            updateKaiRow["ServeQuantity"] = Convert.ToInt32(nudServingQuantity.Value);
             currencyManager.EndCurrentEdit();
             DM.UpdateKai();
             MessageBox.Show("Kai updated successfully", "Success");

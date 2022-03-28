@@ -38,7 +38,6 @@ namespace menu
             this.lblServingQuantity = new System.Windows.Forms.Label();
             this.txtEvent = new System.Windows.Forms.TextBox();
             this.txtKaiName = new System.Windows.Forms.TextBox();
-            this.txtServingQuantity = new System.Windows.Forms.TextBox();
             this.btnDelete = new FontAwesome.Sharp.IconButton();
             this.btnUpdate = new FontAwesome.Sharp.IconButton();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
@@ -48,7 +47,10 @@ namespace menu
             this.lblKaiID = new System.Windows.Forms.Label();
             this.cbxPreparationRequired = new System.Windows.Forms.CheckBox();
             this.nudPreparationTime = new System.Windows.Forms.NumericUpDown();
+            this.lblMinutes = new System.Windows.Forms.Label();
+            this.nudServingQuantity = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nudPreparationTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudServingQuantity)).BeginInit();
             this.SuspendLayout();
             // 
             // lstKai
@@ -134,13 +136,6 @@ namespace menu
             this.txtKaiName.Name = "txtKaiName";
             this.txtKaiName.Size = new System.Drawing.Size(146, 20);
             this.txtKaiName.TabIndex = 9;
-            // 
-            // txtServingQuantity
-            // 
-            this.txtServingQuantity.Location = new System.Drawing.Point(527, 286);
-            this.txtServingQuantity.Name = "txtServingQuantity";
-            this.txtServingQuantity.Size = new System.Drawing.Size(146, 20);
-            this.txtServingQuantity.TabIndex = 12;
             // 
             // btnDelete
             // 
@@ -257,12 +252,32 @@ namespace menu
             this.nudPreparationTime.Size = new System.Drawing.Size(120, 20);
             this.nudPreparationTime.TabIndex = 21;
             // 
+            // lblMinutes
+            // 
+            this.lblMinutes.AutoSize = true;
+            this.lblMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMinutes.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblMinutes.Location = new System.Drawing.Point(653, 233);
+            this.lblMinutes.Name = "lblMinutes";
+            this.lblMinutes.Size = new System.Drawing.Size(76, 24);
+            this.lblMinutes.TabIndex = 22;
+            this.lblMinutes.Text = "Minutes";
+            // 
+            // nudServingQuantity
+            // 
+            this.nudServingQuantity.Location = new System.Drawing.Point(527, 287);
+            this.nudServingQuantity.Name = "nudServingQuantity";
+            this.nudServingQuantity.Size = new System.Drawing.Size(120, 20);
+            this.nudServingQuantity.TabIndex = 23;
+            // 
             // KaiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.nudServingQuantity);
+            this.Controls.Add(this.lblMinutes);
             this.Controls.Add(this.nudPreparationTime);
             this.Controls.Add(this.cbxPreparationRequired);
             this.Controls.Add(this.lblKaiID);
@@ -272,7 +287,6 @@ namespace menu
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
-            this.Controls.Add(this.txtServingQuantity);
             this.Controls.Add(this.txtKaiName);
             this.Controls.Add(this.txtEvent);
             this.Controls.Add(this.lblServingQuantity);
@@ -286,6 +300,7 @@ namespace menu
             this.Text = "Kai Management";
             this.Load += new System.EventHandler(this.KaiForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPreparationTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudServingQuantity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,7 +317,6 @@ namespace menu
         private System.Windows.Forms.Label lblServingQuantity;
         private System.Windows.Forms.TextBox txtEvent;
         private System.Windows.Forms.TextBox txtKaiName;
-        private System.Windows.Forms.TextBox txtServingQuantity;
         private FontAwesome.Sharp.IconButton btnUp;
         private FontAwesome.Sharp.IconButton btnDown;
         private FontAwesome.Sharp.IconButton btnReturn;
@@ -312,5 +326,7 @@ namespace menu
         private System.Windows.Forms.Label lblKaiID;
         private System.Windows.Forms.CheckBox cbxPreparationRequired;
         private System.Windows.Forms.NumericUpDown nudPreparationTime;
+        private System.Windows.Forms.Label lblMinutes;
+        private System.Windows.Forms.NumericUpDown nudServingQuantity;
     }
 }
