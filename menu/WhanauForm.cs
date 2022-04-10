@@ -31,9 +31,9 @@ namespace menu
             txtPhone.DataBindings.Add("Text", DM.dsKaiOordinate, "Whanau.Phone");
             txtAddress.DataBindings.Add("Text", DM.dsKaiOordinate, "Whanau.Address");
 
-            lstWhanau.DataSource = DM.dsKaiOordinate;
-            lstWhanau.DisplayMember ="Whanau.FirstName";
-            lstWhanau.ValueMember = "Whanau.FirstName";
+            dgvFullName.DataSource = DM.dsKaiOordinate;
+            dgvFullName.DataMember ="Whanau";
+           
             currencyManager = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "Whanau"];
         }
         private void btnReturn_Click(object sender, EventArgs e)
@@ -121,6 +121,11 @@ namespace menu
         }
 
         private void lstWhanau_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvFullName_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -49,7 +49,7 @@ namespace menu
         private void btnRegistration_Click(object sender, EventArgs e)
         {
             if (registrationForm == null)
-                registrationForm = new RegistrationForm();
+                registrationForm = new RegistrationForm(DM, this);
             registrationForm.ShowDialog();
         }
 

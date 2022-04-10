@@ -29,7 +29,6 @@ namespace menu
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstWhanau = new System.Windows.Forms.ListBox();
             this.lblWhanauNo = new System.Windows.Forms.Label();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lblLastName = new System.Windows.Forms.Label();
@@ -48,17 +47,9 @@ namespace menu
             this.btnUpdate = new FontAwesome.Sharp.IconButton();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.lblWhanauID = new System.Windows.Forms.Label();
+            this.dgvFullName = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFullName)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lstWhanau
-            // 
-            this.lstWhanau.FormattingEnabled = true;
-            this.lstWhanau.Location = new System.Drawing.Point(28, 26);
-            this.lstWhanau.Name = "lstWhanau";
-            this.lstWhanau.ScrollAlwaysVisible = true;
-            this.lstWhanau.Size = new System.Drawing.Size(239, 277);
-            this.lstWhanau.TabIndex = 1;
-            this.lstWhanau.SelectedIndexChanged += new System.EventHandler(this.lstWhanau_SelectedIndexChanged);
             // 
             // lblWhanauNo
             // 
@@ -255,12 +246,22 @@ namespace menu
             this.lblWhanauID.TabIndex = 28;
             this.lblWhanauID.Text = "null";
             // 
+            // dgvFullName
+            // 
+            this.dgvFullName.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFullName.Location = new System.Drawing.Point(21, 16);
+            this.dgvFullName.Name = "dgvFullName";
+            this.dgvFullName.Size = new System.Drawing.Size(303, 305);
+            this.dgvFullName.TabIndex = 29;
+            this.dgvFullName.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFullName_CellContentClick);
+            // 
             // WhanauForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgvFullName);
             this.Controls.Add(this.lblWhanauID);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnDelete);
@@ -279,18 +280,16 @@ namespace menu
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.lblWhanauNo);
-            this.Controls.Add(this.lstWhanau);
             this.Name = "WhanauForm";
             this.Text = "Whanau Management";
             this.Load += new System.EventHandler(this.WhanauForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFullName)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lstWhanau;
         private System.Windows.Forms.Label lblWhanauNo;
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.Label lblLastName;
@@ -309,5 +308,6 @@ namespace menu
         private FontAwesome.Sharp.IconButton btnUpdate;
         private FontAwesome.Sharp.IconButton btnAdd;
         private System.Windows.Forms.Label lblWhanauID;
+        private System.Windows.Forms.DataGridView dgvFullName;
     }
 }
