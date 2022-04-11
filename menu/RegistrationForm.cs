@@ -56,5 +56,38 @@ namespace menu
             dgvRegistrations.DataMember = "EventRegister";
 
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataRow newRegistration = DM.dtEventRegister.NewRow();
+                newRegistration["EventID"] = dgvEvents["EventID", cmEvents.Position].Value;
+                newRegistration["WhanauID"] = dgvWhanau["WhanauID", cmWhanau.Position].Value;
+                newRegistration["KaiPreparation"] = ckbKaiPreparationAssitant.Checked;
+
+                DM.dsKaiOordinate.Tables["EventRegister"].Rows.Add(newRegistration);
+                DM.UpdateEventRegister();
+
+
+
+            } 
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to add","Error");
+            }
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete this Registration?", "Warning",
+            MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                DataRow deleteRegistrationRow = DM.dtEventRegister.Rows[cmRegistrations.Position];
+                deleteRegistrationRow.Delete();
+                DM.UpdateEvent();
+            }
+        }
     }
 }

@@ -84,13 +84,14 @@ namespace menu
             this.btnAdd.IconChar = FontAwesome.Sharp.IconChar.Plus;
             this.btnAdd.IconColor = System.Drawing.Color.Black;
             this.btnAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAdd.Location = new System.Drawing.Point(488, 362);
+            this.btnAdd.Location = new System.Drawing.Point(734, 362);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(84, 76);
             this.btnAdd.TabIndex = 26;
             this.btnAdd.Text = "Add";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDelete
             // 
@@ -98,13 +99,14 @@ namespace menu
             this.btnDelete.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
             this.btnDelete.IconColor = System.Drawing.Color.Black;
             this.btnDelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDelete.Location = new System.Drawing.Point(590, 362);
+            this.btnDelete.Location = new System.Drawing.Point(846, 362);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(84, 76);
             this.btnDelete.TabIndex = 28;
             this.btnDelete.Text = "Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnReturn
             // 
@@ -112,7 +114,7 @@ namespace menu
             this.btnReturn.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
             this.btnReturn.IconColor = System.Drawing.Color.Black;
             this.btnReturn.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnReturn.Location = new System.Drawing.Point(691, 362);
+            this.btnReturn.Location = new System.Drawing.Point(968, 362);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(84, 76);
             this.btnReturn.TabIndex = 29;
@@ -126,7 +128,7 @@ namespace menu
             this.lblKaiPreparationAssitant.AutoSize = true;
             this.lblKaiPreparationAssitant.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKaiPreparationAssitant.ForeColor = System.Drawing.Color.White;
-            this.lblKaiPreparationAssitant.Location = new System.Drawing.Point(569, 287);
+            this.lblKaiPreparationAssitant.Location = new System.Drawing.Point(846, 295);
             this.lblKaiPreparationAssitant.Name = "lblKaiPreparationAssitant";
             this.lblKaiPreparationAssitant.Size = new System.Drawing.Size(206, 24);
             this.lblKaiPreparationAssitant.TabIndex = 30;
@@ -137,16 +139,16 @@ namespace menu
             this.dgvEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEvents.Location = new System.Drawing.Point(12, 53);
             this.dgvEvents.Name = "dgvEvents";
-            this.dgvEvents.Size = new System.Drawing.Size(355, 150);
+            this.dgvEvents.Size = new System.Drawing.Size(470, 150);
             this.dgvEvents.TabIndex = 31;
             this.dgvEvents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // dgvWhanau
             // 
             this.dgvWhanau.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvWhanau.Location = new System.Drawing.Point(422, 53);
+            this.dgvWhanau.Location = new System.Drawing.Point(558, 53);
             this.dgvWhanau.Name = "dgvWhanau";
-            this.dgvWhanau.Size = new System.Drawing.Size(353, 150);
+            this.dgvWhanau.Size = new System.Drawing.Size(677, 150);
             this.dgvWhanau.TabIndex = 32;
             // 
             // dgvRegistrations
@@ -154,13 +156,13 @@ namespace menu
             this.dgvRegistrations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRegistrations.Location = new System.Drawing.Point(12, 288);
             this.dgvRegistrations.Name = "dgvRegistrations";
-            this.dgvRegistrations.Size = new System.Drawing.Size(453, 150);
+            this.dgvRegistrations.Size = new System.Drawing.Size(457, 150);
             this.dgvRegistrations.TabIndex = 33;
             // 
             // ckbKaiPreparationAssitant
             // 
             this.ckbKaiPreparationAssitant.AutoSize = true;
-            this.ckbKaiPreparationAssitant.Location = new System.Drawing.Point(548, 295);
+            this.ckbKaiPreparationAssitant.Location = new System.Drawing.Point(825, 305);
             this.ckbKaiPreparationAssitant.Name = "ckbKaiPreparationAssitant";
             this.ckbKaiPreparationAssitant.Size = new System.Drawing.Size(15, 14);
             this.ckbKaiPreparationAssitant.TabIndex = 34;
@@ -171,7 +173,7 @@ namespace menu
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1375, 494);
             this.Controls.Add(this.ckbKaiPreparationAssitant);
             this.Controls.Add(this.dgvRegistrations);
             this.Controls.Add(this.dgvWhanau);

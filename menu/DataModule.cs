@@ -67,6 +67,10 @@ namespace menu
         {
             daWhanau.Update(dtWhanau);
         }
+        public void UpdateEventRegister()
+        {
+            daEventRegister.Update(dtEventRegister);
+        }
         private void DataModule_Load(object sender, EventArgs e)
         {
 
