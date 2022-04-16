@@ -29,8 +29,11 @@ namespace menu
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportForm));
             this.btnReturn = new FontAwesome.Sharp.IconButton();
             this.btnGenerateReport = new FontAwesome.Sharp.IconButton();
+            this.printReport = new System.Drawing.Printing.PrintDocument();
+            this.prvReport = new System.Windows.Forms.PrintPreviewDialog();
             this.SuspendLayout();
             // 
             // btnReturn
@@ -61,6 +64,18 @@ namespace menu
             this.btnGenerateReport.Text = "Generate Report";
             this.btnGenerateReport.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerateReport.UseVisualStyleBackColor = true;
+            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
+            // 
+            // prvReport
+            // 
+            this.prvReport.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.prvReport.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.prvReport.ClientSize = new System.Drawing.Size(400, 300);
+            this.prvReport.Document = this.printReport;
+            this.prvReport.Enabled = true;
+            this.prvReport.Icon = ((System.Drawing.Icon)(resources.GetObject("prvReport.Icon")));
+            this.prvReport.Name = "prvReport";
+            this.prvReport.Visible = false;
             // 
             // ReportForm
             // 
@@ -81,5 +96,7 @@ namespace menu
 
         private FontAwesome.Sharp.IconButton btnReturn;
         private FontAwesome.Sharp.IconButton btnGenerateReport;
+        private System.Drawing.Printing.PrintDocument printReport;
+        private System.Windows.Forms.PrintPreviewDialog prvReport;
     }
 }

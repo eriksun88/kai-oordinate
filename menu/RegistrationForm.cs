@@ -27,7 +27,6 @@ namespace menu
             cmWhanau = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "Whanau"];
             cmRegistrations = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "EventRegister"];
 
-
             BindControls();
         }
     
@@ -68,15 +67,11 @@ namespace menu
 
                 DM.dsKaiOordinate.Tables["EventRegister"].Rows.Add(newRegistration);
                 DM.UpdateEventRegister();
-
-
-
             } 
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Failed to add","Error");
             }
-
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

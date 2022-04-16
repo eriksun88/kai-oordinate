@@ -56,7 +56,7 @@ namespace menu
         private void btnReport_Click(object sender, EventArgs e)
         {
             if (reportForm == null)
-                reportForm = new ReportForm();
+                reportForm = new ReportForm(DM, this);
             reportForm.ShowDialog();
         }
 
