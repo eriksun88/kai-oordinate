@@ -121,7 +121,7 @@ namespace menu
             this.lblServingQuantity.Size = new System.Drawing.Size(147, 24);
             this.lblServingQuantity.TabIndex = 6;
             this.lblServingQuantity.Text = "Serving Quantity";
-            this.lblServingQuantity.Click += new System.EventHandler(this.lblServingQuantity_Click);
+           
             // 
             // txtEvent
             // 
@@ -298,7 +298,6 @@ namespace menu
             this.Controls.Add(this.lstKai);
             this.Name = "KaiForm";
             this.Text = "Kai Management";
-            this.Load += new System.EventHandler(this.KaiForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPreparationTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudServingQuantity)).EndInit();
             this.ResumeLayout(false);

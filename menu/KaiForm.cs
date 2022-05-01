@@ -10,11 +10,20 @@ using System.Windows.Forms;
 
 namespace menu
 {
+    ///<Summary> class: KaiForm 
+    ///This form displays the KaiForm, allows the user to edit the records in the kai table
+    ///author: zhiyuan sun
+    ///date written: 19/04/2022
+    ///</Summary>
     public partial class KaiForm : Form
     {
         private DataModule DM;
         private MainForm mainForm;
         private CurrencyManager currencyManager;
+
+        ///<Summary> method: KaiForm
+        ///constructor method to initialize all the component
+        ///</Summary>
         public KaiForm(DataModule dm, MainForm mfm)
         {
             InitializeComponent();
@@ -22,6 +31,9 @@ namespace menu
             mainForm = mfm;
             BindControls();
         }
+        ///<Summary> method: BindControls
+        ///binding data module with form elements
+        ///</Summary>
         public void BindControls()
         {
             lblKaiID.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.KaiID");
@@ -35,22 +47,16 @@ namespace menu
             lstKai.ValueMember = "Kai.KaiName";
             currencyManager = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "Kai"];
         }
-
-        private void KaiForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtKaiID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        ///<Summary> method: btnReturn_Click
+        ///close current form when click
+        ///</Summary>
         private void btnReturn_Click(object sender, EventArgs e)
         {
             Close();
         }
-
+        ///<Summary> method: btnUp_Click
+        ///move to select the upper element in the list when click
+        ///</Summary>
         private void btnUp_Click(object sender, EventArgs e)
         {
             if (currencyManager.Position > 0)
@@ -58,7 +64,9 @@ namespace menu
                 --currencyManager.Position;
             }
         }
-
+        ///<Summary> method: btnDown_Click
+        ///move to select the lower element in the list when click
+        ///</Summary>
         private void btnDown_Click(object sender, EventArgs e)
         {
             if (currencyManager.Position < currencyManager.Count - 1)
@@ -66,12 +74,9 @@ namespace menu
                 ++currencyManager.Position;
             }
         }
-
-        private void lblServingQuantity_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        ///<Summary> method: btnAdd_Click
+        ///add element to the list when click
+        ///</Summary>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             lblKaiID.Text = null;
@@ -81,7 +86,7 @@ namespace menu
                 MessageBox.Show("You must enter a value for each of the text fields", "Error");
                 return;
             }
-            if (nudPreparationTime.Value <= 0 || nudServingQuantity.Value <= 0 )
+            if (nudPreparationTime.Value <= 0 || nudServingQuantity.Value <= 0)
             {
                 MessageBox.Show("You must enter a valid Preparation Minutess and Serving Quantity that greater than 0", "Error");
                 return;
@@ -95,11 +100,12 @@ namespace menu
             newKaiRow["KaiName"] = txtKaiName.Text;
             newKaiRow["PreparationRequired"] = cbxPreparationRequired.Checked;
             newKaiRow["PreparationMinutes"] = Convert.ToInt32(nudPreparationTime.Value); ;
-            newKaiRow["ServeQuantity"] = Convert.ToInt32(nudServingQuantity.Value);         
+            newKaiRow["ServeQuantity"] = Convert.ToInt32(nudServingQuantity.Value);
             DM.dtKai.Rows.Add(newKaiRow);
             DM.UpdateKai();
             MessageBox.Show("Kai added successfully", "Success");
         }
+
         private bool IsValidEvent(int eventID)
         {
             DataRow[] eventRow = DM.dtEvent.Select("EventID = " + eventID);
@@ -118,7 +124,7 @@ namespace menu
                 MessageBox.Show("You must type in a EventID and  KaiName", "Error");
                 return;
             }
-            if (nudPreparationTime.Value <= 0|| nudServingQuantity.Value<=0)
+            if (nudPreparationTime.Value <= 0 || nudServingQuantity.Value <= 0)
             {
                 MessageBox.Show("You must enter a valid Preparation Minutess and Serving Quantity that greater than 0", "Error");
                 return;
@@ -139,14 +145,14 @@ namespace menu
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
-        {          
+        {
             if (MessageBox.Show("Are you sure you want to delete this record?", "Warning",
             MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 DataRow deleteKaiRow = DM.dtKai.Rows[currencyManager.Position];
                 deleteKaiRow.Delete();
                 DM.UpdateEvent();
-            }           
+            }
         }
     }
 }
