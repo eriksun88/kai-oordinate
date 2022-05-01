@@ -36,12 +36,18 @@ namespace menu
         ///</Summary>
         public void BindControls()
         {
-            lblKaiID.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.KaiID");
+            txtKaiID.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.KaiID");
             txtEvent.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.EventID");
             txtKaiName.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.KaiName");
-            cbxPreparationRequired.DataBindings.Add("Checked", DM.dsKaiOordinate, "Kai.PreparationRequired");
-            nudServingQuantity.DataBindings.Add("Value", DM.dsKaiOordinate, "Kai.ServeQuantity");
-            nudPreparationTime.DataBindings.Add("Value", DM.dsKaiOordinate, "Kai.PreparationMinutes");
+            txtPreparationRequired.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.PreparationRequired");
+            txtServingQuantity.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.ServeQuantity");
+            txtPreparationTime.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.PreparationMinutes");
+            txtKaiID.Enabled = false;
+            txtEvent.Enabled = false;
+            txtKaiName.Enabled = false;
+            txtPreparationRequired.Enabled = false;
+            txtServingQuantity.Enabled = false;
+            txtPreparationTime.Enabled = false;
             lstKai.DataSource = DM.dsKaiOordinate;
             lstKai.DisplayMember = "Kai.KaiName";
             lstKai.ValueMember = "Kai.KaiName";
@@ -74,39 +80,33 @@ namespace menu
                 ++currencyManager.Position;
             }
         }
+        private void LoadKai()
+        {
+            cboAddEvent.DataSource = DM.dsKaiOordinate;
+            cboAddEvent.DisplayMember = "Event.EventName";
+            cboAddEvent.ValueMember = "Event.EventID";
+        }
         ///<Summary> method: btnAdd_Click
         ///add element to the list when click
         ///</Summary>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            lblKaiID.Text = null;
-            DataRow newKaiRow = DM.dtKai.NewRow();
-            if ((txtEvent.Text == "") || (txtKaiName.Text == ""))
-            {
-                MessageBox.Show("You must enter a value for each of the text fields", "Error");
-                return;
-            }
-            if (nudPreparationTime.Value <= 0 || nudServingQuantity.Value <= 0)
-            {
-                MessageBox.Show("You must enter a valid Preparation Minutess and Serving Quantity that greater than 0", "Error");
-                return;
-            }
-            if (!IsValidEvent(Convert.ToInt32(txtEvent.Text)))
-            {
-                MessageBox.Show("You may only add Kai to an exist Event", "Error");
-                return;
-            }
-            newKaiRow["EventID"] = Convert.ToInt32(txtEvent.Text);
-            newKaiRow["KaiName"] = txtKaiName.Text;
-            newKaiRow["PreparationRequired"] = cbxPreparationRequired.Checked;
-            newKaiRow["PreparationMinutes"] = Convert.ToInt32(nudPreparationTime.Value); ;
-            newKaiRow["ServeQuantity"] = Convert.ToInt32(nudServingQuantity.Value);
-            DM.dtKai.Rows.Add(newKaiRow);
-            DM.UpdateKai();
-            MessageBox.Show("Kai added successfully", "Success");
+            lstKai.Visible = false;
+            btnUpdate.Enabled = false;  
+            btnDelete.Enabled = false;  
+            btnUp.Enabled = false;  
+            btnDown.Enabled = false;
+            btnReturn.Enabled = false;
+            cboAddEvent.Text = "";
+            txtAddKaiName.Text = null;
+            cbxAddPreparationRequired.Checked = false;
+            nudAddPreparationTime.Value = 0;
+            nudAddServingQuantity.Value = 0;
+            pnlAddKai.Show();
+            LoadKai();
         }
 
-        private bool IsValidEvent(int eventID)
+        private bool hasEvent(int eventID)
         {
             DataRow[] eventRow = DM.dtEvent.Select("EventID = " + eventID);
             if (eventRow.Length == 0)
@@ -116,43 +116,140 @@ namespace menu
             return true;
         }
 
+        private bool IsValidKai()
+        {
+            if (cboAddEvent.Text == "")
+            {
+                MessageBox.Show("You must choose an Event name", "Error");
+                return false;
+            }
+            if (txtAddKaiName.Text == "")
+            {
+                MessageBox.Show("You must enter a Kai name", "Error");
+                return false;
+            }
+            if (cbxAddPreparationRequired.Checked && nudAddPreparationTime.Value <= 0)
+            {
+                MessageBox.Show("You must enter a valid Preparation Minutess that greater than 0", "Error");
+                return false;
+            }
+            if (nudAddServingQuantity.Value <= 0)
+            {
+                MessageBox.Show("You must enter a valid Serving Quantity that greater than 0", "Error");
+                return false;
+            }
+            return true;
+        }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            lstKai.Visible = false;
+            btnAdd.Enabled = false;
+            btnDelete.Enabled = false;
+            btnUp.Enabled = false;
+            btnDown.Enabled = false;
+            btnReturn.Enabled = false;
+            pnlAddKai.Show();
+            LoadKai();
             DataRow updateKaiRow = DM.dtKai.Rows[currencyManager.Position];
-            if ((txtEvent.Text == "") || (txtKaiName.Text == ""))
+            //cboAddEvent.SelectedValue = updateKaiRow["EventID"];
+            txtAddKaiName.Text = updateKaiRow["KaiName"].ToString();
+            cbxAddPreparationRequired.Checked = Convert.ToBoolean(updateKaiRow["PreparationRequired"]);
+            nudAddPreparationTime.Value = Convert.ToInt32(updateKaiRow["PreparationMinutes"]);
+            nudAddServingQuantity.Value = Convert.ToInt32(updateKaiRow["ServeQuantity"]);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DataRow deleteKaiRow = DM.dtKai.Rows[currencyManager.Position];
+            if (!hasEvent(Convert.ToInt32(deleteKaiRow["EventID"])))
             {
-                MessageBox.Show("You must type in a EventID and  KaiName", "Error");
-                return;
+                if (MessageBox.Show("Are you sure you want to delete this record?", "Warning",
+            MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    try
+                    {
+                        deleteKaiRow.Delete();
+                        DM.UpdateEvent();
+                        MessageBox.Show("Kai deleted successfully", "Success");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed to delete Kai", "Error");
+                    }                    
+                }
             }
-            if (nudPreparationTime.Value <= 0 || nudServingQuantity.Value <= 0)
+            else
             {
-                MessageBox.Show("You must enter a valid Preparation Minutess and Serving Quantity that greater than 0", "Error");
-                return;
+                MessageBox.Show("You may only delete kai that have no event relation", "Error");
             }
-            if (!IsValidEvent(Convert.ToInt32(txtEvent.Text)))
-            {
-                MessageBox.Show("You may only add Kai to an exist Event", "Error");
-                return;
-            }
-            updateKaiRow["EventID"] = Convert.ToInt32(txtEvent.Text);
-            updateKaiRow["KaiName"] = txtKaiName.Text;
-            updateKaiRow["PreparationRequired"] = cbxPreparationRequired.Checked;
-            updateKaiRow["PreparationMinutes"] = Convert.ToInt32(nudPreparationTime.Value);
-            updateKaiRow["ServeQuantity"] = Convert.ToInt32(nudServingQuantity.Value);
+        }
+
+        private void AddKai()
+        {
+            lblKaiID.Text = null;
+            DataRow newKaiRow = DM.dtKai.NewRow();
+            newKaiRow["EventID"] = Convert.ToInt32(cboAddEvent.SelectedValue);
+            newKaiRow["KaiName"] = txtAddKaiName.Text;
+            newKaiRow["PreparationRequired"] = cbxAddPreparationRequired.Checked;
+            newKaiRow["PreparationMinutes"] = Convert.ToInt32(nudAddPreparationTime.Value);
+            newKaiRow["ServeQuantity"] = Convert.ToInt32(nudAddServingQuantity.Value);
+            DM.dtKai.Rows.Add(newKaiRow);
+            DM.UpdateKai();
+            MessageBox.Show("Kai added successfully", "Success");
+        }
+        private void UpdateKai()
+        {
+            DataRow updateKaiRow = DM.dtKai.Rows[currencyManager.Position];
+            updateKaiRow["EventID"] = Convert.ToInt32(cboAddEvent.SelectedValue);
+            updateKaiRow["KaiName"] = txtAddKaiName.Text;
+            updateKaiRow["PreparationRequired"] = cbxAddPreparationRequired.Checked;
+            updateKaiRow["PreparationMinutes"] = Convert.ToInt32(nudAddPreparationTime.Value);
+            updateKaiRow["ServeQuantity"] = Convert.ToInt32(nudAddServingQuantity.Value);
             currencyManager.EndCurrentEdit();
             DM.UpdateKai();
             MessageBox.Show("Kai updated successfully", "Success");
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete this record?", "Warning",
-            MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (IsValidKai())
             {
-                DataRow deleteKaiRow = DM.dtKai.Rows[currencyManager.Position];
-                deleteKaiRow.Delete();
-                DM.UpdateEvent();
-            }
+                if (btnAdd.Enabled)
+                {
+                    try
+                    {
+                        AddKai();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed to add Kai", "Error");
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        UpdateKai();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed to update Kai", "Error");
+                    }
+                }
+            }                   
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            pnlAddKai.Hide();
+            lstKai.Visible = true;
+            btnAdd.Enabled = true;
+            btnUpdate.Enabled = true;
+            btnDelete.Enabled = true;
+            btnUp.Enabled = true;
+            btnDown.Enabled = true;
+            btnReturn.Enabled = true;
         }
     }
 }

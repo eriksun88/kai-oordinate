@@ -45,12 +45,28 @@ namespace menu
             this.btnDown = new FontAwesome.Sharp.IconButton();
             this.btnUp = new FontAwesome.Sharp.IconButton();
             this.lblKaiID = new System.Windows.Forms.Label();
-            this.cbxPreparationRequired = new System.Windows.Forms.CheckBox();
-            this.nudPreparationTime = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtKaiID = new System.Windows.Forms.TextBox();
+            this.txtPreparationRequired = new System.Windows.Forms.TextBox();
+            this.txtPreparationTime = new System.Windows.Forms.TextBox();
+            this.txtServingQuantity = new System.Windows.Forms.TextBox();
+            this.pnlAddKai = new System.Windows.Forms.Panel();
             this.lblMinutes = new System.Windows.Forms.Label();
-            this.nudServingQuantity = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPreparationTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudServingQuantity)).BeginInit();
+            this.btnCancel = new FontAwesome.Sharp.IconButton();
+            this.btnSave = new FontAwesome.Sharp.IconButton();
+            this.nudAddServingQuantity = new System.Windows.Forms.NumericUpDown();
+            this.nudAddPreparationTime = new System.Windows.Forms.NumericUpDown();
+            this.cbxAddPreparationRequired = new System.Windows.Forms.CheckBox();
+            this.txtAddKaiName = new System.Windows.Forms.TextBox();
+            this.cboAddEvent = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pnlAddKai.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAddServingQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAddPreparationTime)).BeginInit();
             this.SuspendLayout();
             // 
             // lstKai
@@ -121,7 +137,6 @@ namespace menu
             this.lblServingQuantity.Size = new System.Drawing.Size(147, 24);
             this.lblServingQuantity.TabIndex = 6;
             this.lblServingQuantity.Text = "Serving Quantity";
-           
             // 
             // txtEvent
             // 
@@ -236,50 +251,210 @@ namespace menu
             this.lblKaiID.Size = new System.Drawing.Size(0, 24);
             this.lblKaiID.TabIndex = 19;
             // 
-            // cbxPreparationRequired
+            // label1
             // 
-            this.cbxPreparationRequired.AutoSize = true;
-            this.cbxPreparationRequired.Location = new System.Drawing.Point(530, 191);
-            this.cbxPreparationRequired.Name = "cbxPreparationRequired";
-            this.cbxPreparationRequired.Size = new System.Drawing.Size(15, 14);
-            this.cbxPreparationRequired.TabIndex = 20;
-            this.cbxPreparationRequired.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "label1";
             // 
-            // nudPreparationTime
+            // txtKaiID
             // 
-            this.nudPreparationTime.Location = new System.Drawing.Point(527, 233);
-            this.nudPreparationTime.Name = "nudPreparationTime";
-            this.nudPreparationTime.Size = new System.Drawing.Size(120, 20);
-            this.nudPreparationTime.TabIndex = 21;
+            this.txtKaiID.Location = new System.Drawing.Point(527, 41);
+            this.txtKaiID.Name = "txtKaiID";
+            this.txtKaiID.Size = new System.Drawing.Size(146, 20);
+            this.txtKaiID.TabIndex = 25;
+            // 
+            // txtPreparationRequired
+            // 
+            this.txtPreparationRequired.Location = new System.Drawing.Point(527, 184);
+            this.txtPreparationRequired.Name = "txtPreparationRequired";
+            this.txtPreparationRequired.Size = new System.Drawing.Size(146, 20);
+            this.txtPreparationRequired.TabIndex = 26;
+            // 
+            // txtPreparationTime
+            // 
+            this.txtPreparationTime.Location = new System.Drawing.Point(527, 238);
+            this.txtPreparationTime.Name = "txtPreparationTime";
+            this.txtPreparationTime.Size = new System.Drawing.Size(146, 20);
+            this.txtPreparationTime.TabIndex = 27;
+            // 
+            // txtServingQuantity
+            // 
+            this.txtServingQuantity.Location = new System.Drawing.Point(527, 286);
+            this.txtServingQuantity.Name = "txtServingQuantity";
+            this.txtServingQuantity.Size = new System.Drawing.Size(146, 20);
+            this.txtServingQuantity.TabIndex = 28;
+            // 
+            // pnlAddKai
+            // 
+            this.pnlAddKai.Controls.Add(this.lblMinutes);
+            this.pnlAddKai.Controls.Add(this.btnCancel);
+            this.pnlAddKai.Controls.Add(this.btnSave);
+            this.pnlAddKai.Controls.Add(this.nudAddServingQuantity);
+            this.pnlAddKai.Controls.Add(this.nudAddPreparationTime);
+            this.pnlAddKai.Controls.Add(this.cbxAddPreparationRequired);
+            this.pnlAddKai.Controls.Add(this.txtAddKaiName);
+            this.pnlAddKai.Controls.Add(this.cboAddEvent);
+            this.pnlAddKai.Controls.Add(this.label2);
+            this.pnlAddKai.Controls.Add(this.label3);
+            this.pnlAddKai.Controls.Add(this.label4);
+            this.pnlAddKai.Controls.Add(this.label5);
+            this.pnlAddKai.Controls.Add(this.label6);
+            this.pnlAddKai.Location = new System.Drawing.Point(746, 28);
+            this.pnlAddKai.Name = "pnlAddKai";
+            this.pnlAddKai.Size = new System.Drawing.Size(447, 307);
+            this.pnlAddKai.TabIndex = 29;
+            this.pnlAddKai.Visible = false;
             // 
             // lblMinutes
             // 
             this.lblMinutes.AutoSize = true;
             this.lblMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMinutes.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblMinutes.Location = new System.Drawing.Point(653, 233);
+            this.lblMinutes.Location = new System.Drawing.Point(352, 164);
             this.lblMinutes.Name = "lblMinutes";
             this.lblMinutes.Size = new System.Drawing.Size(76, 24);
-            this.lblMinutes.TabIndex = 22;
-            this.lblMinutes.Text = "Minutes";
+            this.lblMinutes.TabIndex = 35;
+            this.lblMinutes.Text = "minutes";
             // 
-            // nudServingQuantity
+            // btnCancel
             // 
-            this.nudServingQuantity.Location = new System.Drawing.Point(527, 287);
-            this.nudServingQuantity.Name = "nudServingQuantity";
-            this.nudServingQuantity.Size = new System.Drawing.Size(120, 20);
-            this.nudServingQuantity.TabIndex = 23;
+            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.btnCancel.IconColor = System.Drawing.Color.Black;
+            this.btnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCancel.IconSize = 36;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(308, 260);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(113, 44);
+            this.btnCancel.TabIndex = 34;
+            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.btnSave.IconColor = System.Drawing.Color.Black;
+            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSave.IconSize = 36;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(203, 260);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(99, 44);
+            this.btnSave.TabIndex = 30;
+            this.btnSave.Text = "SAVE";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // nudAddServingQuantity
+            // 
+            this.nudAddServingQuantity.Location = new System.Drawing.Point(244, 212);
+            this.nudAddServingQuantity.Name = "nudAddServingQuantity";
+            this.nudAddServingQuantity.Size = new System.Drawing.Size(86, 20);
+            this.nudAddServingQuantity.TabIndex = 33;
+            // 
+            // nudAddPreparationTime
+            // 
+            this.nudAddPreparationTime.Location = new System.Drawing.Point(244, 164);
+            this.nudAddPreparationTime.Name = "nudAddPreparationTime";
+            this.nudAddPreparationTime.Size = new System.Drawing.Size(86, 20);
+            this.nudAddPreparationTime.TabIndex = 32;
+            // 
+            // cbxAddPreparationRequired
+            // 
+            this.cbxAddPreparationRequired.AutoSize = true;
+            this.cbxAddPreparationRequired.Location = new System.Drawing.Point(237, 111);
+            this.cbxAddPreparationRequired.Name = "cbxAddPreparationRequired";
+            this.cbxAddPreparationRequired.Size = new System.Drawing.Size(15, 14);
+            this.cbxAddPreparationRequired.TabIndex = 31;
+            this.cbxAddPreparationRequired.UseVisualStyleBackColor = true;
+         
+            // 
+            // txtAddKaiName
+            // 
+            this.txtAddKaiName.Location = new System.Drawing.Point(238, 66);
+            this.txtAddKaiName.Name = "txtAddKaiName";
+            this.txtAddKaiName.Size = new System.Drawing.Size(146, 20);
+            this.txtAddKaiName.TabIndex = 30;
+            // 
+            // cboAddEvent
+            // 
+            this.cboAddEvent.FormattingEnabled = true;
+            this.cboAddEvent.Location = new System.Drawing.Point(238, 19);
+            this.cboAddEvent.Name = "cboAddEvent";
+            this.cboAddEvent.Size = new System.Drawing.Size(155, 21);
+            this.cboAddEvent.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(68, 208);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(147, 24);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Serving Quantity";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label3.Location = new System.Drawing.Point(68, 158);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(154, 24);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Preparation Time";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(21, 109);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(194, 24);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Preparation Required ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(123, 61);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 24);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Kai Name";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(157, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 24);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Event";
             // 
             // KaiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.nudServingQuantity);
-            this.Controls.Add(this.lblMinutes);
-            this.Controls.Add(this.nudPreparationTime);
-            this.Controls.Add(this.cbxPreparationRequired);
+            this.ClientSize = new System.Drawing.Size(1335, 450);
+            this.Controls.Add(this.pnlAddKai);
+            this.Controls.Add(this.txtServingQuantity);
+            this.Controls.Add(this.txtPreparationTime);
+            this.Controls.Add(this.txtPreparationRequired);
+            this.Controls.Add(this.txtKaiID);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblKaiID);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -297,9 +472,11 @@ namespace menu
             this.Controls.Add(this.lblKaiNo);
             this.Controls.Add(this.lstKai);
             this.Name = "KaiForm";
-            this.Text = "Kai Management";
-            ((System.ComponentModel.ISupportInitialize)(this.nudPreparationTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudServingQuantity)).EndInit();
+            this.Text = "0";
+            this.pnlAddKai.ResumeLayout(false);
+            this.pnlAddKai.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAddServingQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAddPreparationTime)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,9 +500,24 @@ namespace menu
         private FontAwesome.Sharp.IconButton btnUpdate;
         private FontAwesome.Sharp.IconButton btnDelete;
         private System.Windows.Forms.Label lblKaiID;
-        private System.Windows.Forms.CheckBox cbxPreparationRequired;
-        private System.Windows.Forms.NumericUpDown nudPreparationTime;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtKaiID;
+        private System.Windows.Forms.TextBox txtPreparationRequired;
+        private System.Windows.Forms.TextBox txtPreparationTime;
+        private System.Windows.Forms.TextBox txtServingQuantity;
+        private System.Windows.Forms.Panel pnlAddKai;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox cbxAddPreparationRequired;
+        private System.Windows.Forms.TextBox txtAddKaiName;
+        private System.Windows.Forms.ComboBox cboAddEvent;
         private System.Windows.Forms.Label lblMinutes;
-        private System.Windows.Forms.NumericUpDown nudServingQuantity;
+        private FontAwesome.Sharp.IconButton btnCancel;
+        private FontAwesome.Sharp.IconButton btnSave;
+        private System.Windows.Forms.NumericUpDown nudAddServingQuantity;
+        private System.Windows.Forms.NumericUpDown nudAddPreparationTime;
     }
 }
