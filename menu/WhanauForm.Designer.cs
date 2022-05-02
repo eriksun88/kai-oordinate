@@ -328,6 +328,7 @@ namespace menu
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -431,7 +432,6 @@ namespace menu
             this.Controls.Add(this.lblWhanauNo);
             this.Name = "WhanauForm";
             this.Text = "Whanau Management";
-     
             ((System.ComponentModel.ISupportInitialize)(this.dgvFullName)).EndInit();
             this.pnlAddWhanau.ResumeLayout(false);
             this.pnlAddWhanau.PerformLayout();

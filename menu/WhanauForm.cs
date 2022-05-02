@@ -82,10 +82,6 @@ namespace menu
             }
         }
 
-        private void LoadWhanau() 
-        { 
-        }
-
         ///<Summary> method: btnAdd_Click
         ///add element to the list when click
         ///</Summary>
@@ -97,13 +93,12 @@ namespace menu
             btnUp.Enabled = false;
             btnDown.Enabled = false;
             btnReturn.Enabled = false;
-            txtFirstName.Text = null;
-            txtLastName.Text = null;
-            txtEmail.Text = null;
-            txtPhone.Text = null;
-            txtAddAddress.Text = null;
+            txtAddFirstName.Text = "";
+            txtAddLastName.Text = "";
+            txtAddEmail.Text = "";
+            txtAddPhone.Text = "";
+            txtAddAddress.Text = "";
             pnlAddWhanau.Show();
-            LoadWhanau();
 
             /*lblWhanauID.Text = null;
             DataRow newWhanauRow = DM.dtWhanau.NewRow();
@@ -129,26 +124,17 @@ namespace menu
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             dgvFullName.Visible = false;
-            btnUpdate.Enabled = false;
+            btnAdd.Enabled = false;
             btnDelete.Enabled = false;
             btnUp.Enabled = false;
             btnDown.Enabled = false;
             btnReturn.Enabled = false;
-            txtFirstName.Text = null;
-            txtLastName.Text = null;
-            txtEmail.Text = null;
-            txtPhone.Text = null;
-            txtAddAddress.Text = null;
+            txtAddFirstName.Text = txtFirstName.Text;
+            txtAddLastName.Text = txtLastName.Text;
+            txtAddEmail.Text = txtEmail.Text;
+            txtAddPhone.Text = txtPhone.Text;
+            txtAddAddress.Text = txtAddress.Text;
             pnlAddWhanau.Show();
-            LoadWhanau();
-            DataRow updateWhanauRow = DM.dtWhanau.Rows[currencyManager.Position];
-            //cboAddEvent.SelectedValue = updateKaiRow["EventID"];
-            txtAddFirstName.Text = updateWhanauRow["FirstName"].ToString();
-            txtAddLastName.Text = updateWhanauRow["LastName"].ToString();
-            txtAddEmail.Text = updateWhanauRow["Email"].ToString();
-            txtAddPhone.Text = updateWhanauRow["Phone"].ToString();
-            txtAddAddress.Text = updateWhanauRow["Address"].ToString();
-
 
             /* DataRow updateWhanauRow = DM.dtWhanau.Rows[currencyManager.Position];
              if ((txtFirstName.Text == "") || (txtLastName.Text == "") || (txtEmail.Text == "") || (txtPhone.Text == "") || (txtAddress.Text == ""))
@@ -166,14 +152,26 @@ namespace menu
              MessageBox.Show("Whanau updated successfully", "Success");*/
         }
 
+        ///<Summary> method: hasEventRegister
+        ///check whether the event to be delete reference to any EventRegister
+        ///</Summary>
+        private bool hasEventRegister(string whanauID)
+        {
+            DataRow[] EventRegisterRow = DM.dtEventRegister.Select("WhanauID = " + whanauID);
+            if (EventRegisterRow.Length == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
         ///<Summary> method: btnDelete_Click
         ///delete element from the list when click
         ///</Summary>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DataRow deleteWhanauRow = DM.dtWhanau.Rows[currencyManager.Position];
-            DataRow[] EventRegisterRow = DM.dtEventRegister.Select("WhanauID = " + txtWhanauID.Text);
-            if (EventRegisterRow.Length != 0)
+            if (hasEventRegister(txtWhanauID.Text))
             {
                 MessageBox.Show("You may only delete Whanau that are not allocated to Event Register", "Error");
             }
@@ -181,19 +179,24 @@ namespace menu
             {
                 if (MessageBox.Show("Are you sure you want to delete this record?", "Warning",
             MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {  
-                    deleteWhanauRow.Delete();
-                    DM.UpdateWhanau();
+                {
+                    try 
+                    {
+                        deleteWhanauRow.Delete();
+                        DM.UpdateWhanau();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed to delete Whanau", "Error");
+                    }                   
                 }
             }
-           
         }
-        ///<Summary> method: AddKai
-        ///
+        ///<Summary> method: AddWhanau
+        ///add Whanau object to DB
         ///</Summary>
         private void AddWhanau()
         {
-            txtWhanauID.Text = null;
             DataRow newWhanauRow = DM.dtWhanau.NewRow();
             newWhanauRow["FirstName"] = txtAddFirstName.Text;
             newWhanauRow["LastName"] = txtAddLastName.Text;
@@ -206,25 +209,25 @@ namespace menu
         }
 
         ///<Summary> method: UpdateWhanau
-        ///
+        ///Update Whanau object to DB
         ///</Summary>
         private void UpdateWhanau()
         {
-            DataRow newWhanauRow = DM.dtWhanau.NewRow();
-            newWhanauRow["FirstName"] = txtAddFirstName.Text;
-            newWhanauRow["LastName"] = txtAddLastName.Text;
-            newWhanauRow["Email"] = txtAddEmail.Text;
-            newWhanauRow["Phone"] = txtAddPhone.Text;
-            newWhanauRow["Address"] = txtAddAddress.Text;
-            DM.dtWhanau.Rows.Add(newWhanauRow);
+            DataRow updateWhanauRow = DM.dtWhanau.Rows[currencyManager.Position];
+            updateWhanauRow["FirstName"] = txtAddFirstName.Text;
+            updateWhanauRow["LastName"] = txtAddLastName.Text;
+            updateWhanauRow["Email"] = txtAddEmail.Text;
+            updateWhanauRow["Phone"] = txtAddPhone.Text;
+            updateWhanauRow["Address"] = txtAddAddress.Text;
+            currencyManager.EndCurrentEdit();
             DM.UpdateWhanau();
-            MessageBox.Show("Whanau uppdate successfully", "Success");
+            MessageBox.Show("Whanau updated successfully", "Success");
         }
 
-        ///<Summary> method: btnCancel_Click
-        ///cancel 
+        ///<Summary> method: InitView
+        ///initialize the form view to hide the panel and enable buttons 
         ///</Summary>
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void InitView()
         {
             pnlAddWhanau.Hide();
             dgvFullName.Visible = true;
@@ -234,6 +237,14 @@ namespace menu
             btnUp.Enabled = true;
             btnDown.Enabled = true;
             btnReturn.Enabled = true;
+        }
+
+        ///<Summary> method: btnCancel_Click
+        ///cancel 
+        ///</Summary>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            InitView();
         }
 
         ///<Summary> method: btnSave_Click
@@ -248,6 +259,8 @@ namespace menu
                     try
                     {
                         AddWhanau();
+                        currencyManager.Position = currencyManager.Count;
+                        InitView();
                     }
                     catch
                     {
@@ -259,6 +272,7 @@ namespace menu
                     try
                     {
                         UpdateWhanau();
+                        InitView();
                     }
                     catch
                     {
@@ -272,35 +286,32 @@ namespace menu
         ///</Summary>
         private bool IsValidWhanau()
         {           
-            if (txtAddFirstName.Text == "")
+            if (txtAddFirstName.Text.Trim() == "")
             {
                 MessageBox.Show("You must enter a First name", "Error");
                 return false;
             }
-            if (txtAddLastName.Text == "")
+            if (txtAddLastName.Text.Trim() == "")
             {
                 MessageBox.Show("You must enter a Last name", "Error");
                 return false;
             }
-            if (txtAddEmail.Text == "")
+            if (txtAddEmail.Text.Trim() == "")
             {
                 MessageBox.Show("You must enter a Email Address", "Error");
                 return false;
             }
-            if (txtAddPhone.Text == "")
+            if (txtAddPhone.Text.Trim() == "")
             {
                 MessageBox.Show("You must enter a Phone Number", "Error");
                 return false;
             }
-            if (txtAddAddress.Text == "")
+            if (txtAddAddress.Text.Trim() == "")
             {
                 MessageBox.Show("You must enter a Address", "Error");
                 return false;
             }
-
             return true;
-        }
-
-        
+        }     
     }
 }
