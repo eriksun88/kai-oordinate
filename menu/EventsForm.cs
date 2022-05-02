@@ -10,12 +10,20 @@ using System.Windows.Forms;
 
 namespace menu
 {
+    ///<Summary> class: EventsForm 
+    ///This form displays the EventsForm, allows the user to edit the records in the Events table
+    ///author: zhiyuan sun
+    ///date written: 20/04/2022
+    ///</Summary>
     public partial class EventsForm : Form
     {
         private DataModule DM;
         private MainForm mainForm;
         private CurrencyManager currencyManager;
 
+        ///<Summary> method: EventsForm
+        ///constructor method to initialize all the component
+        ///</Summary>
         public EventsForm(DataModule dm, MainForm mfm)
         {
             InitializeComponent();
@@ -23,28 +31,28 @@ namespace menu
             mainForm = mfm;
             BindControls();
         }
+        ///<Summary> method: BindControls
+        ///binding data module with form elements
+        ///</Summary>
         public void BindControls()
         {
-            lblEventID.DataBindings.Add("Text", DM.dsKaiOordinate, "Event.EventID");
+            
             txtEventName.DataBindings.Add("Text", DM.dsKaiOordinate, "Event.EventName");
-            txtLocation.DataBindings.Add("Text", DM.dsKaiOordinate, "Event.LocationID");
-            dtpEventDate.DataBindings.Add("text", DM.dsKaiOordinate, "Event.EventDate");
+            txtLocation.DataBindings.Add("Text", DM.dsKaiOordinate, "Event.EventLocation");
+            txtEventDate.DataBindings.Add("text", DM.dsKaiOordinate, "Event.EventDate");
+            txtEventName.Enabled = false;
+            txtLocation.Enabled = false;
+            txtEventDate.Enabled = false;
             lstEvent.DataSource = DM.dsKaiOordinate;
             lstEvent.DisplayMember = "Event.EventName";
             lstEvent.ValueMember = "Event.EventName";
             currencyManager = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "EVENT"];
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void EventsForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        ///<Summary> method: btnUp_Click
+        ///move to select the upper element in the list when click
+        ///</Summary>
         private void btnUp_Click(object sender, EventArgs e)
         {
             if (currencyManager.Position > 0)
@@ -53,11 +61,17 @@ namespace menu
             }
         }
 
+        ///<Summary> method: btnReturn_Click
+        ///close current form when click
+        ///</Summary>
         private void btnReturn_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        ///<Summary> method: btnDown_Click
+        ///move to select the lower element in the list when click
+        ///</Summary>
         private void btnDown_Click(object sender, EventArgs e)
         {
             if (currencyManager.Position < currencyManager.Count - 1)
@@ -66,11 +80,27 @@ namespace menu
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+
+            ///<Summary> method: btnAdd_Click
+            ///add element to the list when click
+            ///</Summary>
+            private void btnAdd_Click(object sender, EventArgs e)
         {
+
+            lstEvent.Visible = false;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
+            btnUp.Enabled = false;
+            btnDown.Enabled = false;
+            btnReturn.Enabled = false;
+            cboAddLocation.Text = "";
+            txtAddEventName.Text = null;
             lblEventID.Text = null;
-            DataRow newEventRow = DM.dtEvent.NewRow();
-            if ((txtEventName.Text == "") || (txtLocation.Text == "") || (dtpEventDate.Text == ""))
+            dtpAddEventDate = null;           
+            pnlEvent.Show();
+            LoadEvent();
+            /*DataRow newEventRow = DM.dtEvent.NewRow();
+            if ((txtEventName.Text == "") || (txtLocation.Text == "") || (dtpAddEventDate.Text == ""))
             {
                 MessageBox.Show("You must enter a value for each of the text fields", "Error");
                 return;
@@ -82,21 +112,28 @@ namespace menu
             }
             newEventRow["EventName"] = txtEventName.Text;
             newEventRow["LocationID"] = Convert.ToInt32(txtLocation.Text);
-            newEventRow["EventDate"] = dtpEventDate.Text;
+            newEventRow["EventDate"] = dtpAddEventDate.Text;
             DM.dtEvent.Rows.Add(newEventRow);
             DM.UpdateEvent();
-            MessageBox.Show("Event added successfully", "Success");
+            MessageBox.Show("Event added successfully", "Success");*/
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        ///<Summary> method: btnUpdate_Click
+        ///update element to the list when click
+        ///</Summary>      
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            DataRow updateEventRow = DM.dtEvent.Rows[currencyManager.Position];
-            if ((txtEventName.Text == "") || (txtLocation.Text == "")||(dtpEventDate.Text == ""))
+            lstEvent.Visible = false;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
+            btnUp.Enabled = false;
+            btnDown.Enabled = false;
+            btnReturn.Enabled = false;
+            pnlEvent.Show();
+            LoadEvent();
+
+            /*DataRow updateEventRow = DM.dtEvent.Rows[currencyManager.Position];
+            if ((txtEventName.Text == "") || (txtLocation.Text == "")||(dtpAddEventDate.Text == ""))
             {
                 MessageBox.Show("You must type in a EventName description, Location and EventDate", "Error");
                 return;
@@ -109,22 +146,44 @@ namespace menu
 
             updateEventRow["EventName"] = txtEventName.Text;
             updateEventRow["LocationID"] = Convert.ToInt32(txtLocation.Text);
-            updateEventRow["EventDate"] = dtpEventDate.Text;
+            updateEventRow["EventDate"] = dtpAddEventDate.Text;
             currencyManager.EndCurrentEdit();
             DM.UpdateEvent();
-            MessageBox.Show("Event updated successfully", "Success");           
+            MessageBox.Show("Event updated successfully", "Success");         */
         }
 
-        private bool IsValidLocation(int locationID)
+        ///<Summary> method: IsValidKai
+        ///
+        ///</Summary>
+        private bool IsValidLocation()
         {
-            DataRow[] LocationRow = DM.dtLocation.Select("LocationID = " + locationID);
+            if (cboAddLocation.Text == "")
+            {
+                MessageBox.Show("You must choose an Location name", "Error");
+                return false;
+            }
+            if (txtAddEventName.Text == "")
+            {
+                MessageBox.Show("You must enter a Event name", "Error");
+                return false;
+            }
+            if (dtpAddEventDate == null)
+            {
+                MessageBox.Show("You must enter a valid Event Date", "Error");
+                return false;
+            }            
+            return true;
+            /*DataRow[] LocationRow = DM.dtLocation.Select("LocationID = " + locationID);
             if (LocationRow.Length == 0)
             {
                 return false;
             }
-            return true;
+            return true;*/
         }
 
+        ///<Summary> method: btnDelete_Click
+        ///delete element from the list when click
+        ///</Summary>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DataRow deleteEventRow = DM.dtEvent.Rows[currencyManager.Position];
@@ -144,5 +203,83 @@ namespace menu
                 }
             }
         }
+
+        ///<Summary> method: AddKai
+        ///
+        ///</Summary>
+        private void AddEvent()
+        {
+            
+            DataRow newKaiRow = DM.dtKai.NewRow();            
+            newKaiRow["EventName"] = txtAddEventName.Text;          
+            newKaiRow["Location"] = cboAddLocation.SelectedValue;
+            newKaiRow["EventDate"] = Convert.ToInt32(dtpAddEventDate.Value);
+            DM.dtEvent.Rows.Add(newEventRow);
+            DM.UpdateEvent();
+            MessageBox.Show("Event added successfully", "Success");
+        }
+
+        ///<Summary> method: UpdateKai
+        ///
+        ///</Summary>
+        private void UpdateEvent()
+        {
+            DataRow newKaiRow = DM.dtKai.NewRow();
+            newKaiRow["EventName"] = txtAddEventName.Text;
+            newKaiRow["Location"] = cboAddLocation.SelectedValue;
+            newKaiRow["EventDate"] = Convert.ToInt32(dtpAddEventDate.Value);
+            DM.dtEvent.Rows.Add(newEventRow);
+            DM.UpdateEvent();
+            MessageBox.Show("Event added successfully", "Success");
+        }
+
+        ///<Summary> method: btnSave_Click
+        ///save element to the list when click
+        ///</Summary>
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (IsValidLocation())
+            {
+                if (btnAdd.Enabled)
+                {
+                    try
+                    {
+                        AddEvent();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed to add Event", "Error");
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        UpdateEvent();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed to update Event", "Error");
+                    }
+                }
+            }
+        }
+
+        ///<Summary> method: btnCancel_Click
+        ///cancel 
+        ///</Summary>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            pnlEvent.Hide();
+            lstEvent.Visible = true;
+            btnAdd.Enabled = true;
+            btnUpdate.Enabled = true;
+            btnDelete.Enabled = true;
+            btnUp.Enabled = true;
+            btnDown.Enabled = true;
+            btnReturn.Enabled = true;
+        }
+
+       
     }
 }

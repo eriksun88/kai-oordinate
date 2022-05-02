@@ -43,7 +43,18 @@ namespace menu
             this.btnDelete = new FontAwesome.Sharp.IconButton();
             this.btnReturn = new FontAwesome.Sharp.IconButton();
             this.lblEventID = new System.Windows.Forms.Label();
-            this.dtpEventDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpAddEventDate = new System.Windows.Forms.DateTimePicker();
+            this.pnlEvent = new System.Windows.Forms.Panel();
+            this.cboAddLocation = new System.Windows.Forms.ComboBox();
+            this.txtAddEventName = new System.Windows.Forms.TextBox();
+            this.btnCancel = new FontAwesome.Sharp.IconButton();
+            this.btnSave = new FontAwesome.Sharp.IconButton();
+            this.lblAddEventDate = new System.Windows.Forms.Label();
+            this.lblAddLocation = new System.Windows.Forms.Label();
+            this.lblAddEventName = new System.Windows.Forms.Label();
+            this.txtEventDate = new System.Windows.Forms.TextBox();
+            this.txtEventID = new System.Windows.Forms.TextBox();
+            this.pnlEvent.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstEvent
@@ -100,7 +111,6 @@ namespace menu
             this.txtEventName.Name = "txtEventName";
             this.txtEventName.Size = new System.Drawing.Size(146, 20);
             this.txtEventName.TabIndex = 14;
-            this.txtEventName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // txtLocation
             // 
@@ -207,24 +217,132 @@ namespace menu
             this.lblEventID.Name = "lblEventID";
             this.lblEventID.Size = new System.Drawing.Size(0, 24);
             this.lblEventID.TabIndex = 23;
-            this.lblEventID.Click += new System.EventHandler(this.label1_Click);
             // 
-            // dtpEventDate
+            // dtpAddEventDate
             // 
-            this.dtpEventDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpEventDate.Location = new System.Drawing.Point(447, 242);
-            this.dtpEventDate.Name = "dtpEventDate";
-            this.dtpEventDate.Size = new System.Drawing.Size(181, 20);
-            this.dtpEventDate.TabIndex = 25;
-            this.dtpEventDate.Value = new System.DateTime(2022, 3, 28, 0, 0, 0, 0);
+            this.dtpAddEventDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpAddEventDate.Location = new System.Drawing.Point(174, 133);
+            this.dtpAddEventDate.Name = "dtpAddEventDate";
+            this.dtpAddEventDate.Size = new System.Drawing.Size(181, 20);
+            this.dtpAddEventDate.TabIndex = 25;
+            this.dtpAddEventDate.Value = new System.DateTime(2022, 3, 28, 0, 0, 0, 0);
+            // 
+            // pnlEvent
+            // 
+            this.pnlEvent.Controls.Add(this.cboAddLocation);
+            this.pnlEvent.Controls.Add(this.txtAddEventName);
+            this.pnlEvent.Controls.Add(this.btnCancel);
+            this.pnlEvent.Controls.Add(this.btnSave);
+            this.pnlEvent.Controls.Add(this.lblAddEventDate);
+            this.pnlEvent.Controls.Add(this.dtpAddEventDate);
+            this.pnlEvent.Controls.Add(this.lblAddLocation);
+            this.pnlEvent.Controls.Add(this.lblAddEventName);
+            this.pnlEvent.Location = new System.Drawing.Point(778, 39);
+            this.pnlEvent.Name = "pnlEvent";
+            this.pnlEvent.Size = new System.Drawing.Size(406, 280);
+            this.pnlEvent.TabIndex = 26;
+            this.pnlEvent.Visible = false;
+            // 
+            // cboAddLocation
+            // 
+            this.cboAddLocation.FormattingEnabled = true;
+            this.cboAddLocation.Location = new System.Drawing.Point(176, 95);
+            this.cboAddLocation.Name = "cboAddLocation";
+            this.cboAddLocation.Size = new System.Drawing.Size(143, 21);
+            this.cboAddLocation.TabIndex = 36;
+            // 
+            // txtAddEventName
+            // 
+            this.txtAddEventName.Location = new System.Drawing.Point(174, 53);
+            this.txtAddEventName.Name = "txtAddEventName";
+            this.txtAddEventName.Size = new System.Drawing.Size(146, 20);
+            this.txtAddEventName.TabIndex = 29;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.btnCancel.IconColor = System.Drawing.Color.Black;
+            this.btnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCancel.IconSize = 36;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(271, 188);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(113, 44);
+            this.btnCancel.TabIndex = 35;
+            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.btnSave.IconColor = System.Drawing.Color.Black;
+            this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSave.IconSize = 36;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(146, 188);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(99, 44);
+            this.btnSave.TabIndex = 31;
+            this.btnSave.Text = "SAVE";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
+            // lblAddEventDate
+            // 
+            this.lblAddEventDate.AutoSize = true;
+            this.lblAddEventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddEventDate.Location = new System.Drawing.Point(30, 131);
+            this.lblAddEventDate.Name = "lblAddEventDate";
+            this.lblAddEventDate.Size = new System.Drawing.Size(101, 24);
+            this.lblAddEventDate.TabIndex = 27;
+            this.lblAddEventDate.Text = "Event Date";
+            // 
+            // lblAddLocation
+            // 
+            this.lblAddLocation.AutoSize = true;
+            this.lblAddLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddLocation.Location = new System.Drawing.Point(42, 89);
+            this.lblAddLocation.Name = "lblAddLocation";
+            this.lblAddLocation.Size = new System.Drawing.Size(81, 24);
+            this.lblAddLocation.TabIndex = 27;
+            this.lblAddLocation.Text = "Location";
+            // 
+            // lblAddEventName
+            // 
+            this.lblAddEventName.AutoSize = true;
+            this.lblAddEventName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddEventName.Location = new System.Drawing.Point(30, 48);
+            this.lblAddEventName.Name = "lblAddEventName";
+            this.lblAddEventName.Size = new System.Drawing.Size(114, 24);
+            this.lblAddEventName.TabIndex = 27;
+            this.lblAddEventName.Text = "Event Name";
+            // 
+            // txtEventDate
+            // 
+            this.txtEventDate.Location = new System.Drawing.Point(447, 242);
+            this.txtEventDate.Name = "txtEventDate";
+            this.txtEventDate.Size = new System.Drawing.Size(146, 20);
+            this.txtEventDate.TabIndex = 27;
+            // 
+            // txtEventID
+            // 
+            this.txtEventID.Location = new System.Drawing.Point(449, 62);
+            this.txtEventID.Name = "txtEventID";
+            this.txtEventID.Size = new System.Drawing.Size(146, 20);
+            this.txtEventID.TabIndex = 28;
             // 
             // EventsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dtpEventDate);
+            this.ClientSize = new System.Drawing.Size(1279, 450);
+            this.Controls.Add(this.txtEventID);
+            this.Controls.Add(this.txtEventDate);
+            this.Controls.Add(this.pnlEvent);
             this.Controls.Add(this.lblEventID);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnDelete);
@@ -241,7 +359,9 @@ namespace menu
             this.Controls.Add(this.lstEvent);
             this.Name = "EventsForm";
             this.Text = "Event Management";
-            this.Load += new System.EventHandler(this.EventsForm_Load);
+           
+            this.pnlEvent.ResumeLayout(false);
+            this.pnlEvent.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,6 +383,16 @@ namespace menu
         private FontAwesome.Sharp.IconButton btnDelete;
         private FontAwesome.Sharp.IconButton btnReturn;
         private System.Windows.Forms.Label lblEventID;
-        private System.Windows.Forms.DateTimePicker dtpEventDate;
+        private System.Windows.Forms.DateTimePicker dtpAddEventDate;
+        private System.Windows.Forms.Panel pnlEvent;
+        private System.Windows.Forms.Label lblAddEventDate;
+        private System.Windows.Forms.Label lblAddLocation;
+        private System.Windows.Forms.Label lblAddEventName;
+        private System.Windows.Forms.TextBox txtEventDate;
+        private System.Windows.Forms.ComboBox cboAddLocation;
+        private System.Windows.Forms.TextBox txtAddEventName;
+        private FontAwesome.Sharp.IconButton btnCancel;
+        private FontAwesome.Sharp.IconButton btnSave;
+        private System.Windows.Forms.TextBox txtEventID;
     }
 }

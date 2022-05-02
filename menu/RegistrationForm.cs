@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace menu
 {
+    ///<Summary> class: RegistrationForm 
+    ///This form displays the RegistrationForm, allows the user to see the records in the Registration table
+    ///author: zhiyuan sun
+    ///date written: 24/04/2022
+    ///</Summary>
     public partial class RegistrationForm : Form
     {
         private DataModule DM;
@@ -18,6 +23,10 @@ namespace menu
         private CurrencyManager cmEvents;
         private CurrencyManager cmWhanau;
         private CurrencyManager cmRegistrations;
+
+        ///<Summary> method: RegistrationForm
+        ///constructor method to initialize all the component
+        ///</Summary>
         public RegistrationForm(DataModule dm, MainForm mfm)
         {
             InitializeComponent();
@@ -26,25 +35,20 @@ namespace menu
             cmEvents = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "Event"];
             cmWhanau = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "Whanau"];
             cmRegistrations = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "EventRegister"];
-
             BindControls();
         }
-    
 
-        private void registrationform_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        ///<Summary> method: btnReturn_Click
+        ///close current form when click
+        ///</Summary>
         private void btnReturn_Click(object sender, EventArgs e)
         {
             Close();
         }
+
+        ///<Summary> method: BindControls
+        ///binding data module with form elements
+        ///</Summary>
         public void BindControls()
         {
             dgvEvents.DataSource = DM.dsKaiOordinate;
@@ -56,6 +60,9 @@ namespace menu
 
         }
 
+        ///<Summary> method: btnAdd_Click
+        ///add element to the list when click
+        ///</Summary>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -74,6 +81,9 @@ namespace menu
             }
         }
 
+        ///<Summary> method: btnDelete_Click
+        ///delete element from the list when click
+        ///</Summary>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to delete this Registration?", "Warning",

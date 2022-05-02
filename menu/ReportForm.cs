@@ -10,22 +10,26 @@ using System.Windows.Forms;
 
 namespace menu
 {
+    ///<Summary> class: ReportForm 
+    ///This form displays the ReportForm, allows the user to print out the report
+    ///author: zhiyuan sun
+    ///date written: 23/04/2022
+    ///</Summary>
     public partial class ReportForm : Form
     {
         private DataModule DM;
         private MainForm mainForm;
         private int amountofReportPrinted, pagesAmountExpected;
         private DataRow[] reportForPrint;
+
+        ///<Summary> method: ReportForm
+        ///constructor method to initialize all the component
+        ///</Summary>
         public ReportForm(DataModule dm, MainForm mfm)
         {
             InitializeComponent();
             DM = dm;
             mainForm = mfm;            
-        }
-
-        private void ReportForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnGenerateReport_Click(object sender, EventArgs e)
@@ -38,10 +42,16 @@ namespace menu
 
         }
 
+        ///<Summary> method: btnReturn_Click
+        ///close current form when click
+        ///</Summary>
         private void btnReturn_Click(object sender, EventArgs e)
         {
             Close();
         }
+
+       
+
         private void printReport_PrintPage(object sender,System.Drawing.Printing.PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;

@@ -87,7 +87,7 @@ namespace menu
             this.Controls.Add(this.btnReturn);
             this.Name = "ReportForm";
             this.Text = "Report Preview";
-            this.Load += new System.EventHandler(this.ReportForm_Load);
+            
             this.ResumeLayout(false);
 
         }

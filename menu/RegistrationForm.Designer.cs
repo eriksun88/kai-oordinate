@@ -141,7 +141,7 @@ namespace menu
             this.dgvEvents.Name = "dgvEvents";
             this.dgvEvents.Size = new System.Drawing.Size(470, 150);
             this.dgvEvents.TabIndex = 31;
-            this.dgvEvents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            
             // 
             // dgvWhanau
             // 
@@ -187,7 +187,7 @@ namespace menu
             this.Controls.Add(this.lblEvents);
             this.Name = "RegistrationForm";
             this.Text = "Registration Maintenance";
-            this.Load += new System.EventHandler(this.registrationform_Load);
+            
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWhanau)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistrations)).EndInit();

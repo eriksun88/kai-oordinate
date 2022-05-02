@@ -80,6 +80,9 @@ namespace menu
                 ++currencyManager.Position;
             }
         }
+        ///<Summary> method: LoadKai
+        ///load kai information
+        ///</Summary>
         private void LoadKai()
         {
             cboAddEvent.DataSource = DM.dsKaiOordinate;
@@ -106,6 +109,9 @@ namespace menu
             LoadKai();
         }
 
+        ///<Summary> method: hasEvent
+        ///
+        ///</Summary>
         private bool hasEvent(int eventID)
         {
             DataRow[] eventRow = DM.dtEvent.Select("EventID = " + eventID);
@@ -116,6 +122,9 @@ namespace menu
             return true;
         }
 
+        ///<Summary> method: IsValidKai
+        ///
+        ///</Summary>
         private bool IsValidKai()
         {
             if (cboAddEvent.Text == "")
@@ -141,6 +150,9 @@ namespace menu
             return true;
         }
 
+        ///<Summary> method: btnUpdate_Click
+        ///update element to the list when click
+        ///</Summary>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             lstKai.Visible = false;
@@ -159,6 +171,9 @@ namespace menu
             nudAddServingQuantity.Value = Convert.ToInt32(updateKaiRow["ServeQuantity"]);
         }
 
+        ///<Summary> method: btnDelete_Click
+        ///delete element from the list when click
+        ///</Summary>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DataRow deleteKaiRow = DM.dtKai.Rows[currencyManager.Position];
@@ -185,6 +200,9 @@ namespace menu
             }
         }
 
+        ///<Summary> method: AddKai
+        ///
+        ///</Summary>
         private void AddKai()
         {
             lblKaiID.Text = null;
@@ -198,6 +216,10 @@ namespace menu
             DM.UpdateKai();
             MessageBox.Show("Kai added successfully", "Success");
         }
+
+        ///<Summary> method: UpdateKai
+        ///
+        ///</Summary>
         private void UpdateKai()
         {
             DataRow updateKaiRow = DM.dtKai.Rows[currencyManager.Position];
@@ -211,6 +233,9 @@ namespace menu
             MessageBox.Show("Kai updated successfully", "Success");
         }
 
+        ///<Summary> method: btnSave_Click
+        ///save element to the list when click
+        ///</Summary>
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (IsValidKai())
@@ -240,6 +265,9 @@ namespace menu
             }                   
         }
 
+        ///<Summary> method: btnCancel_Click
+        ///cancel 
+        ///</Summary>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             pnlAddKai.Hide();

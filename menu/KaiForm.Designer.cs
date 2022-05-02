@@ -303,7 +303,7 @@ namespace menu
             this.pnlAddKai.Controls.Add(this.label4);
             this.pnlAddKai.Controls.Add(this.label5);
             this.pnlAddKai.Controls.Add(this.label6);
-            this.pnlAddKai.Location = new System.Drawing.Point(746, 28);
+            this.pnlAddKai.Location = new System.Drawing.Point(743, 28);
             this.pnlAddKai.Name = "pnlAddKai";
             this.pnlAddKai.Size = new System.Drawing.Size(447, 307);
             this.pnlAddKai.TabIndex = 29;
@@ -375,7 +375,6 @@ namespace menu
             this.cbxAddPreparationRequired.Size = new System.Drawing.Size(15, 14);
             this.cbxAddPreparationRequired.TabIndex = 31;
             this.cbxAddPreparationRequired.UseVisualStyleBackColor = true;
-         
             // 
             // txtAddKaiName
             // 
