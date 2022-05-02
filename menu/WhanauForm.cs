@@ -82,6 +82,10 @@ namespace menu
             }
         }
 
+        private void LoadWhanau() 
+        { 
+        }
+
         ///<Summary> method: btnAdd_Click
         ///add element to the list when click
         ///</Summary>
@@ -168,7 +172,7 @@ namespace menu
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DataRow deleteWhanauRow = DM.dtWhanau.Rows[currencyManager.Position];
-            DataRow[] EventRegisterRow = DM.dtEventRegister.Select("WhanauID = " + lblWhanauID.Text);
+            DataRow[] EventRegisterRow = DM.dtEventRegister.Select("WhanauID = " + txtWhanauID.Text);
             if (EventRegisterRow.Length != 0)
             {
                 MessageBox.Show("You may only delete Whanau that are not allocated to Event Register", "Error");
@@ -182,14 +186,14 @@ namespace menu
                     DM.UpdateWhanau();
                 }
             }
-            
+           
         }
         ///<Summary> method: AddKai
         ///
         ///</Summary>
         private void AddWhanau()
         {
-            lblWhanauID.Text = null;
+            txtWhanauID.Text = null;
             DataRow newWhanauRow = DM.dtWhanau.NewRow();
             newWhanauRow["FirstName"] = txtAddFirstName.Text;
             newWhanauRow["LastName"] = txtAddLastName.Text;

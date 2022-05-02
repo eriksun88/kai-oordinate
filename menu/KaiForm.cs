@@ -20,6 +20,7 @@ namespace menu
         private DataModule DM;
         private MainForm mainForm;
         private CurrencyManager currencyManager;
+        private DataRow[] EventRows;
 
         ///<Summary> method: KaiForm
         ///constructor method to initialize all the component
@@ -36,8 +37,8 @@ namespace menu
         ///</Summary>
         public void BindControls()
         {
+            EventRows = DM.dtEvent.Select("");
             txtKaiID.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.KaiID");
-            txtEvent.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.EventID");
             txtKaiName.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.KaiName");
             txtPreparationRequired.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.PreparationRequired");
             txtServingQuantity.DataBindings.Add("Text", DM.dsKaiOordinate, "Kai.ServeQuantity");
@@ -52,6 +53,7 @@ namespace menu
             lstKai.DisplayMember = "Kai.KaiName";
             lstKai.ValueMember = "Kai.KaiName";
             currencyManager = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "Kai"];
+            PopulateTxtEvent();
         }
         ///<Summary> method: btnReturn_Click
         ///close current form when click
@@ -68,6 +70,7 @@ namespace menu
             if (currencyManager.Position > 0)
             {
                 --currencyManager.Position;
+                PopulateTxtEvent();
             }
         }
         ///<Summary> method: btnDown_Click
@@ -78,12 +81,13 @@ namespace menu
             if (currencyManager.Position < currencyManager.Count - 1)
             {
                 ++currencyManager.Position;
+                PopulateTxtEvent();
             }
         }
-        ///<Summary> method: LoadKai
-        ///load kai information
+        ///<Summary> method: LoadEvents
+        ///load event list
         ///</Summary>
-        private void LoadKai()
+        private void LoadEvents()
         {
             cboAddEvent.DataSource = DM.dsKaiOordinate;
             cboAddEvent.DisplayMember = "Event.EventName";
@@ -106,11 +110,11 @@ namespace menu
             nudAddPreparationTime.Value = 0;
             nudAddServingQuantity.Value = 0;
             pnlAddKai.Show();
-            LoadKai();
+            LoadEvents();
         }
 
         ///<Summary> method: hasEvent
-        ///
+        ///check whether the event with given eventID exist in the event table or not
         ///</Summary>
         private bool hasEvent(int eventID)
         {
@@ -122,8 +126,24 @@ namespace menu
             return true;
         }
 
+        ///<Summary> method: PopulateTxtEvent
+        ///populate value for TxtEvent to match with the event table
+        ///</Summary>
+        private void PopulateTxtEvent()
+        {
+            DataRow selectedEvent = Array.Find(EventRows, r => r["EventID"].ToString() == DM.dtKai.Rows[currencyManager.Position]["EventID"].ToString());
+            if (selectedEvent != null) 
+            {
+                txtEvent.Text = selectedEvent["EventName"].ToString();
+            }
+            else
+            {
+                txtEvent.Text = "";
+            }
+        }
+
         ///<Summary> method: IsValidKai
-        ///
+        ///check the user input is valid or not
         ///</Summary>
         private bool IsValidKai()
         {
@@ -132,19 +152,19 @@ namespace menu
                 MessageBox.Show("You must choose an Event name", "Error");
                 return false;
             }
-            if (txtAddKaiName.Text == "")
+            if (txtAddKaiName.Text.Trim() == "")
             {
                 MessageBox.Show("You must enter a Kai name", "Error");
                 return false;
             }
-            if (cbxAddPreparationRequired.Checked && nudAddPreparationTime.Value <= 0)
+            if (cbxAddPreparationRequired.Checked && (nudAddPreparationTime.Value <= 0 || nudAddPreparationTime.Value > 1000))
             {
-                MessageBox.Show("You must enter a valid Preparation Minutess that greater than 0", "Error");
+                MessageBox.Show("You must enter a valid Preparation Minutess that greater than 0 and less than 1000", "Error");
                 return false;
             }
-            if (nudAddServingQuantity.Value <= 0)
+            if (nudAddServingQuantity.Value <= 0 || nudAddServingQuantity.Value > 1000)
             {
-                MessageBox.Show("You must enter a valid Serving Quantity that greater than 0", "Error");
+                MessageBox.Show("You must enter a valid Serving Quantity that greater than 0 and less than 1000", "Error");
                 return false;
             }
             return true;
@@ -160,15 +180,14 @@ namespace menu
             btnDelete.Enabled = false;
             btnUp.Enabled = false;
             btnDown.Enabled = false;
-            btnReturn.Enabled = false;
+            btnReturn.Enabled = false;            
+            LoadEvents();
+            cboAddEvent.Text = txtEvent.Text;
+            txtAddKaiName.Text = txtKaiName.Text;
+            cbxAddPreparationRequired.Checked = Convert.ToBoolean(txtPreparationRequired.Text);
+            nudAddPreparationTime.Value = Convert.ToInt32(txtPreparationTime.Text);
+            nudAddServingQuantity.Value = Convert.ToInt32(txtServingQuantity.Text);
             pnlAddKai.Show();
-            LoadKai();
-            DataRow updateKaiRow = DM.dtKai.Rows[currencyManager.Position];
-            //cboAddEvent.SelectedValue = updateKaiRow["EventID"];
-            txtAddKaiName.Text = updateKaiRow["KaiName"].ToString();
-            cbxAddPreparationRequired.Checked = Convert.ToBoolean(updateKaiRow["PreparationRequired"]);
-            nudAddPreparationTime.Value = Convert.ToInt32(updateKaiRow["PreparationMinutes"]);
-            nudAddServingQuantity.Value = Convert.ToInt32(updateKaiRow["ServeQuantity"]);
         }
 
         ///<Summary> method: btnDelete_Click
@@ -201,11 +220,10 @@ namespace menu
         }
 
         ///<Summary> method: AddKai
-        ///
+        ///add Kai object to DB
         ///</Summary>
         private void AddKai()
         {
-            lblKaiID.Text = null;
             DataRow newKaiRow = DM.dtKai.NewRow();
             newKaiRow["EventID"] = Convert.ToInt32(cboAddEvent.SelectedValue);
             newKaiRow["KaiName"] = txtAddKaiName.Text;
@@ -218,7 +236,7 @@ namespace menu
         }
 
         ///<Summary> method: UpdateKai
-        ///
+        ///update Kai object to DB
         ///</Summary>
         private void UpdateKai()
         {
@@ -245,6 +263,9 @@ namespace menu
                     try
                     {
                         AddKai();
+                        currencyManager.Position = currencyManager.Count;
+                        PopulateTxtEvent();
+                        InitView();
                     }
                     catch
                     {
@@ -256,6 +277,8 @@ namespace menu
                     try
                     {
                         UpdateKai();
+                        PopulateTxtEvent();
+                        InitView();                       
                     }
                     catch
                     {
@@ -264,11 +287,10 @@ namespace menu
                 }
             }                   
         }
-
-        ///<Summary> method: btnCancel_Click
-        ///cancel 
+        ///<Summary> method: InitView
+        ///initialize the form view to hide the panel and enable buttons 
         ///</Summary>
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void InitView()
         {
             pnlAddKai.Hide();
             lstKai.Visible = true;
@@ -278,6 +300,14 @@ namespace menu
             btnUp.Enabled = true;
             btnDown.Enabled = true;
             btnReturn.Enabled = true;
+        }
+
+        ///<Summary> method: btnCancel_Click
+        ///cancel editing/updating
+        ///</Summary>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            InitView();
         }
     }
 }

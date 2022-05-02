@@ -78,6 +78,10 @@ namespace menu
             }
         }
 
+        private void LoadLocation()
+        { 
+        }
+
         ///<Summary> method: btnAdd_Click
         ///add element to the list when click
         ///</Summary>
@@ -123,7 +127,7 @@ namespace menu
                 MessageBox.Show("You must enter an Address", "Error");
                 return false;
             }
-
+            return true;
         }
 
         ///<Summary> method: btnUpdate_Click
@@ -185,9 +189,9 @@ namespace menu
         private void AddLocation()
         {
             lblLocationID.Text = null;
-            DataRow newKaiRow = DM.dtKai.NewRow();           
-            newKaiRow["LocationName"] = txtAddLocationName.Text;
-            newKaiRow["Address"] = txtAddAddress.Text;
+            DataRow newLocationRow = DM.dtKai.NewRow();
+            newLocationRow["LocationName"] = txtAddLocationName.Text;
+            newLocationRow["Address"] = txtAddAddress.Text;
             DM.dtLocation.Rows.Add(newLocationRow);
             DM.UpdateLocation();
             MessageBox.Show("Location added successfully", "Success");
@@ -198,9 +202,9 @@ namespace menu
         ///</Summary>
         private void UpdateLocation()
         {
-            DataRow newKaiRow = DM.dtKai.NewRow();
-            newKaiRow["LocationName"] = txtAddLocationName.Text;
-            newKaiRow["Address"] = txtAddAddress.Text;
+            DataRow newLocationRow = DM.dtKai.NewRow();
+            newLocationRow["LocationName"] = txtAddLocationName.Text;
+            newLocationRow["Address"] = txtAddAddress.Text;
             DM.dtLocation.Rows.Add(newLocationRow);
             DM.UpdateLocation();
             MessageBox.Show("Location uppdate successfully", "Success");

@@ -45,7 +45,6 @@ namespace menu
             this.btnDown = new FontAwesome.Sharp.IconButton();
             this.btnUp = new FontAwesome.Sharp.IconButton();
             this.lblKaiID = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtKaiID = new System.Windows.Forms.TextBox();
             this.txtPreparationRequired = new System.Windows.Forms.TextBox();
             this.txtPreparationTime = new System.Windows.Forms.TextBox();
@@ -251,15 +250,6 @@ namespace menu
             this.lblKaiID.Size = new System.Drawing.Size(0, 24);
             this.lblKaiID.TabIndex = 19;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "label1";
-            // 
             // txtKaiID
             // 
             this.txtKaiID.Location = new System.Drawing.Point(527, 41);
@@ -356,6 +346,11 @@ namespace menu
             // nudAddServingQuantity
             // 
             this.nudAddServingQuantity.Location = new System.Drawing.Point(244, 212);
+            this.nudAddServingQuantity.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.nudAddServingQuantity.Name = "nudAddServingQuantity";
             this.nudAddServingQuantity.Size = new System.Drawing.Size(86, 20);
             this.nudAddServingQuantity.TabIndex = 33;
@@ -363,6 +358,11 @@ namespace menu
             // nudAddPreparationTime
             // 
             this.nudAddPreparationTime.Location = new System.Drawing.Point(244, 164);
+            this.nudAddPreparationTime.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.nudAddPreparationTime.Name = "nudAddPreparationTime";
             this.nudAddPreparationTime.Size = new System.Drawing.Size(86, 20);
             this.nudAddPreparationTime.TabIndex = 32;
@@ -453,7 +453,6 @@ namespace menu
             this.Controls.Add(this.txtPreparationTime);
             this.Controls.Add(this.txtPreparationRequired);
             this.Controls.Add(this.txtKaiID);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblKaiID);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -499,7 +498,6 @@ namespace menu
         private FontAwesome.Sharp.IconButton btnUpdate;
         private FontAwesome.Sharp.IconButton btnDelete;
         private System.Windows.Forms.Label lblKaiID;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtKaiID;
         private System.Windows.Forms.TextBox txtPreparationRequired;
         private System.Windows.Forms.TextBox txtPreparationTime;

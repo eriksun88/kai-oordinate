@@ -221,11 +221,12 @@ namespace menu
             // dtpAddEventDate
             // 
             this.dtpAddEventDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpAddEventDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpAddEventDate.Location = new System.Drawing.Point(174, 133);
             this.dtpAddEventDate.Name = "dtpAddEventDate";
             this.dtpAddEventDate.Size = new System.Drawing.Size(181, 20);
             this.dtpAddEventDate.TabIndex = 25;
-            this.dtpAddEventDate.Value = new System.DateTime(2022, 3, 28, 0, 0, 0, 0);
+            this.dtpAddEventDate.Value = new System.DateTime(2022, 5, 1, 0, 0, 0, 0);
             // 
             // pnlEvent
             // 
@@ -273,6 +274,7 @@ namespace menu
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -289,6 +291,7 @@ namespace menu
             this.btnSave.Text = "SAVE";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblAddEventDate
             // 
@@ -304,7 +307,7 @@ namespace menu
             // 
             this.lblAddLocation.AutoSize = true;
             this.lblAddLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddLocation.Location = new System.Drawing.Point(42, 89);
+            this.lblAddLocation.Location = new System.Drawing.Point(30, 89);
             this.lblAddLocation.Name = "lblAddLocation";
             this.lblAddLocation.Size = new System.Drawing.Size(81, 24);
             this.lblAddLocation.TabIndex = 27;
@@ -359,7 +362,6 @@ namespace menu
             this.Controls.Add(this.lstEvent);
             this.Name = "EventsForm";
             this.Text = "Event Management";
-           
             this.pnlEvent.ResumeLayout(false);
             this.pnlEvent.PerformLayout();
             this.ResumeLayout(false);
