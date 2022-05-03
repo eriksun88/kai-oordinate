@@ -133,17 +133,17 @@ namespace menu
         {
             if (cboAddLocation.Text == "")
             {
-                MessageBox.Show("You must choose an Location name", "Error");
+                MessageBox.Show("You must choose an Location name");
                 return false;
             }
             if (txtAddEventName.Text.Trim() == "")
             {
-                MessageBox.Show("You must enter a Event name", "Error");
+                MessageBox.Show("You must enter a Event name");
                 return false;
             }
             if (dtpAddEventDate.Text == "")
             {
-                MessageBox.Show("You must enter a valid Event Date", "Error");
+                MessageBox.Show("You must enter a valid Event Date");
                 return false;
             }            
             return true;
@@ -171,7 +171,7 @@ namespace menu
             DataRow deleteEventRow = DM.dtEvent.Rows[currencyManager.Position];
             if (hasRegisterOrKai(txtEventID.Text))
             {
-                MessageBox.Show("You may only delete Event that are not allocated to Register or Kai", "Error");
+                MessageBox.Show("You may only delete an event that has no kai");
             }
             else
             {
@@ -185,7 +185,7 @@ namespace menu
                     }
                     catch
                     {
-                        MessageBox.Show("Failed to delete Event", "Error");
+                        MessageBox.Show("Failed to delete Event");
                     }                   
                 }
             }
@@ -202,7 +202,7 @@ namespace menu
             newEventRow["EventDate"] = dtpAddEventDate.Text;
             DM.dtEvent.Rows.Add(newEventRow);
             DM.UpdateEvent();
-            MessageBox.Show("Event added successfully", "Success");
+            MessageBox.Show("Event added successfully");
         }
 
         ///<Summary> method: UpdateEvent
@@ -216,7 +216,7 @@ namespace menu
             updateEventRow["EventDate"] = dtpAddEventDate.Text;
             currencyManager.EndCurrentEdit();
             DM.UpdateEvent();
-            MessageBox.Show("Event updated successfully", "Success");
+            MessageBox.Show("Event updated successfully");
         }
 
         ///<Summary> method: btnSave_Click

@@ -205,17 +205,17 @@ namespace menu
                     {
                         deleteKaiRow.Delete();
                         DM.UpdateEvent();
-                        MessageBox.Show("Kai deleted successfully", "Success");
+                        MessageBox.Show("Kai deleted successfully");
                     }
                     catch
                     {
-                        MessageBox.Show("Failed to delete Kai", "Error");
+                        MessageBox.Show("Failed to delete Kai");
                     }                    
                 }
             }
             else
             {
-                MessageBox.Show("You may only delete kai that have no event relation", "Error");
+                MessageBox.Show("You may only delete kai that have no event relation");
             }
         }
 
@@ -232,7 +232,7 @@ namespace menu
             newKaiRow["ServeQuantity"] = Convert.ToInt32(nudAddServingQuantity.Value);
             DM.dtKai.Rows.Add(newKaiRow);
             DM.UpdateKai();
-            MessageBox.Show("Kai added successfully", "Success");
+            MessageBox.Show("Kai added successfully");
         }
 
         ///<Summary> method: UpdateKai
@@ -248,7 +248,7 @@ namespace menu
             updateKaiRow["ServeQuantity"] = Convert.ToInt32(nudAddServingQuantity.Value);
             currencyManager.EndCurrentEdit();
             DM.UpdateKai();
-            MessageBox.Show("Kai updated successfully", "Success");
+            MessageBox.Show("Kai updated successfully");
         }
 
         ///<Summary> method: btnSave_Click

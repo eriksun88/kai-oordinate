@@ -66,6 +66,10 @@ namespace menu
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
+            // printReport
+            // 
+            this.printReport.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printReport_PrintPage);
+            // 
             // prvReport
             // 
             this.prvReport.AutoScrollMargin = new System.Drawing.Size(0, 0);
@@ -87,7 +91,6 @@ namespace menu
             this.Controls.Add(this.btnReturn);
             this.Name = "ReportForm";
             this.Text = "Report Preview";
-            
             this.ResumeLayout(false);
 
         }

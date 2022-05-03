@@ -362,6 +362,7 @@ namespace menu
             this.Controls.Add(this.lstEvent);
             this.Name = "EventsForm";
             this.Text = "Event Management";
+           
             this.pnlEvent.ResumeLayout(false);
             this.pnlEvent.PerformLayout();
             this.ResumeLayout(false);

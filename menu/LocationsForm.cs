@@ -37,9 +37,10 @@ namespace menu
         ///</Summary>
         public void BindControls()
         {
-            
+            txtLocationID.DataBindings.Add("Text", DM.dsKaiOordinate, "Location.LocationID");
             txtLocationName.DataBindings.Add("Text", DM.dsKaiOordinate, "Location.LocationName");
             txtAddress.DataBindings.Add("Text", DM.dsKaiOordinate, "Location.Address");
+            txtLocationID.Enabled = false;
             txtLocationName.Enabled = false;
             txtAddress.Enabled = false;
             lstLocation.DataSource = DM.dsKaiOordinate;
@@ -93,10 +94,10 @@ namespace menu
             btnUp.Enabled = false;
             btnDown.Enabled = false;
             btnReturn.Enabled = false;
-            txtAddLocationName.Text = null;
-            txtAddAddress.Text = null;
+            txtAddLocationName.Text = "";
+            txtAddAddress.Text = "";
             pnlAddLocation.Show();
-            LoadLocation();
+            
             /*lblLocationID.Text = null;
             DataRow newLocationRow = DM.dtLocation.NewRow();
             if ((txtLocationName.Text == "") || (txtAddress.Text == ""))
@@ -141,25 +142,9 @@ namespace menu
             btnUp.Enabled = false;
             btnDown.Enabled = false;
             btnReturn.Enabled = false;
-            txtAddLocationName.Text = null;
-            txtAddAddress.Text = null;
+            txtAddLocationName.Text = txtLocationName.Text;
+            txtAddAddress.Text = txtAddress.Text;
             pnlAddLocation.Show();
-            LoadLocation();
-            DataRow updateLocationRow = DM.dtLocation.Rows[currencyManager.Position];
-            //cboAddEvent.SelectedValue = updateKaiRow["EventID"];
-            txtAddLocationName.Text = updateLocationRow["LocationName"].ToString();
-            txtAddAddress.Text = updateLocationRow["Addres"].ToString();
-            /*DataRow updateLocationRow = DM.dtLocation.Rows[currencyManager.Position];
-            if ((txtLocationName.Text == "") || (txtAddress.Text == ""))
-            {
-                MessageBox.Show("You must type in a LocationName and Address", "Error");
-                return;
-            }
-            updateLocationRow["LocationName"] = txtLocationName.Text;
-            updateLocationRow["Address"] = txtAddress.Text;
-            currencyManager.EndCurrentEdit();
-            DM.UpdateLocation();
-            MessageBox.Show("Location updated successfully", "Success");*/
         }
 
         ///<Summary> method: btnDelete_Click

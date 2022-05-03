@@ -19,8 +19,8 @@ namespace menu
     {
         private DataModule DM;
         private MainForm mainForm;
-        private int amountofReportPrinted, pagesAmountExpected;
-        private DataRow[] reportForPrint;
+        private int amountOfEventsChecked, totalEventsCount;
+        private DataRow[] allEvents;
 
         ///<Summary> method: ReportForm
         ///constructor method to initialize all the component
@@ -34,12 +34,11 @@ namespace menu
 
         private void btnGenerateReport_Click(object sender, EventArgs e)
         {
-            amountofReportPrinted = 0;
+            amountOfEventsChecked = 0;
             string strSort = "EventID";
-            reportForPrint = DM.dsKaiOordinate.Tables["Event"].Select("", strSort, DataViewRowState.CurrentRows);
-            pagesAmountExpected = reportForPrint.Length;
+            allEvents = DM.dsKaiOordinate.Tables["Event"].Select("", strSort, DataViewRowState.CurrentRows);
+            totalEventsCount = allEvents.Length;
             prvReport.Show();
-
         }
 
         ///<Summary> method: btnReturn_Click
@@ -50,26 +49,12 @@ namespace menu
             Close();
         }
 
-
-
         private void printReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
             int linesSoFarHeading = 0;
             Font textFont = new Font("Arial", 10, FontStyle.Regular);
-            Font textFontCenter = new Font("Arial", 10, FontStyle.Regular);
-            Font totalSubtotal = new Font("Arial", 10, FontStyle.Bold);
-            Font headingFont = new Font("Arial", 10, FontStyle.Bold);
-            DataRow drVisit = reportForPrint[amountofReportPrinted];
-            CurrencyManager cmEvent;
-            CurrencyManager cmLocation;
-            CurrencyManager cmWhanau;
-            double visitTotal = 0;
-
-            cmEvent = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "Event"];
-            cmLocation = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "Location"];
-            cmWhanau = (CurrencyManager)this.BindingContext[DM.dsKaiOordinate, "Whanau"];
-
+            Font headingFont = new Font("Arial", 10, FontStyle.Bold);           
             Brush brush = new SolidBrush(Color.Black);
             int leftMargin = e.MarginBounds.Left;
             int topMargin = e.MarginBounds.Top;
@@ -77,82 +62,73 @@ namespace menu
             int topMarginDetails = topMargin + 70;
             int rightMargin = e.MarginBounds.Right;
 
-            int aEventID = Convert.ToInt32(drVisit["EventID"].ToString());
-            cmEvent.Position = DM.eventView.Find(aEventID);
-            DataRow drEvent = DM.dtEvent.Rows[cmEvent.Position];
-
-            int aLocationID = Convert.ToInt32(drVisit["LocationID"].ToString());
-            cmLocation.Position = DM.eventView.Find(aLocationID);
-            DataRow drLocation = DM.dtLocation.Rows[cmLocation.Position];
-
-            int aWhanauID = Convert.ToInt32(drVisit["WhanauID"].ToString());
-            cmWhanau.Position = DM.eventView.Find(aWhanauID);
-            DataRow drWhanau = DM.dtWhanau.Rows[cmWhanau.Position];
-
-            g.DrawString("Event ID: " + drEvent["EventID"], headingFont, brush, leftMargin + headingLeftMargin,
-                               topMargin + (linesSoFarHeading * textFont.Height));
-            linesSoFarHeading++;
-            g.DrawString(drEvent["EventName"] + "", headingFont, brush, leftMargin + headingLeftMargin,
-                               topMargin + (linesSoFarHeading * textFont.Height));
-            linesSoFarHeading++;
-            g.DrawString(drEvent["EventDate"] + "", headingFont, brush, leftMargin + headingLeftMargin,
-                              topMargin + (linesSoFarHeading * textFont.Height));
-            linesSoFarHeading++;
-            g.DrawString(drLocation["LocationName"] + "", headingFont, brush, leftMargin + headingLeftMargin,
-                              topMargin + (linesSoFarHeading * textFont.Height));
-            linesSoFarHeading++;
-            g.DrawString(drLocation["Address"] + "", headingFont, brush, leftMargin + headingLeftMargin,
-                              topMargin + (linesSoFarHeading * textFont.Height));
-            linesSoFarHeading++;
-            g.DrawString("Attendees " + drWhanau["\nFirstName"] + " " + drWhanau["LastName"] + " " +
-                 drWhanau["Phone NO."], headingFont, brush, leftMargin + headingLeftMargin,
-                topMargin + (linesSoFarHeading * textFont.Height));
-            linesSoFarHeading++;
-
-            visitTotal += Convert.ToDouble(drWhanau[""]);
-
-
-            /*DataRow[] drTreatments = drVisit.GetChildRows(DM.dtVisit.ChildRelations["VISIT_VISITTREATMENT"]);
-            if (drTreatments.Length == 0)
+            DataRow drEvent = allEvents[amountOfEventsChecked];
+            DataRow[] eventRegisterRows = DM.dtEventRegister.Select("EventID = " + drEvent["EventID"]);
+            if (eventRegisterRows.Length > 0)
             {
-                g.DrawString("This visit has no treatments", headingFont, brush, leftMargin + headingLeftMargin,
+                g.DrawString("Event ID: " + drEvent["EventID"].ToString(), headingFont, brush, leftMargin + headingLeftMargin,
+                           topMargin + (linesSoFarHeading * textFont.Height));
+                linesSoFarHeading++;
+                g.DrawString("Event Name: " + drEvent["EventName"], headingFont, brush, leftMargin + headingLeftMargin,
+                               topMargin + (linesSoFarHeading * textFont.Height));
+                linesSoFarHeading++;
+                g.DrawString("Date: " + drEvent["EventDate"], headingFont, brush, leftMargin + headingLeftMargin,
+                               topMargin + (linesSoFarHeading * textFont.Height));
+                linesSoFarHeading++;
+
+                DataRow drLocation = GetLocationByID(drEvent["LocationID"].ToString());
+                g.DrawString("Location: " + drLocation["LocationName"], headingFont, brush, leftMargin + headingLeftMargin,
+                               topMargin + (linesSoFarHeading * textFont.Height));
+                linesSoFarHeading++;
+                g.DrawString("Address: " + drLocation["Address"], headingFont, brush, leftMargin + headingLeftMargin,
+                               topMargin + (linesSoFarHeading * textFont.Height));
+                linesSoFarHeading = linesSoFarHeading + 2;
+                g.DrawString("Attendees:", headingFont, brush, leftMargin + headingLeftMargin,
+                           topMargin + (linesSoFarHeading * textFont.Height));
+                linesSoFarHeading = linesSoFarHeading + 2;
+                g.DrawString("FirstName" + CreateSpace(20) + "LastName" + CreateSpace(20) + "Phone NO." + CreateSpace(20) + "Helper", headingFont, brush, leftMargin + headingLeftMargin,
                 topMargin + (linesSoFarHeading * textFont.Height));
-            }
-            else
-            {
-                foreach (DataRow drVisitTreatment in drTreatments)
+                linesSoFarHeading = linesSoFarHeading + 2;
+
+                foreach (DataRow drEventRegister in eventRegisterRows)
                 {
-                    string treatmentText = "";
-                    int aTreatmentID = Convert.ToInt32(drVisitTreatment["TreatmentID"].ToString());
-                    cmTreatment.Position = DM.treatmentView.Find(aTreatmentID);
-                    DataRow drTreatment = DM.dtTreatment.Rows[cmTreatment.Position];
-                    double treatmentCost;
-                    treatmentCost = Convert.ToInt32(drVisitTreatment["Quantity"]) *
-                    Convert.ToDouble(drTreatment["Cost"]);
-                    visitTotal += treatmentCost;
-                    txtInvoices.Text += treatmentText;
-                    g.DrawString("tTreatment Description: " + drTreatment["Description"]
-                    + "tQuantity: " + drVisitTreatment["Quantity"]
-                    + "tTreatment Cost: " + Convert.ToString(treatmentCost), headingFont, brush,
-                    leftMargin + headingLeftMargin, topMargin +
-                    (linesSoFarHeading * textFont.Height));
+                    DataRow drWhanau = GetWhanauByID(drEventRegister["WhanauID"].ToString());
+                    g.DrawString(drWhanau["FirstName"] + CreateSpace(20) + drWhanau["LastName"] + CreateSpace(20) +
+             drWhanau["Phone"] + CreateSpace(20) + drEventRegister["KaiPreparation"], textFont, brush, leftMargin + headingLeftMargin,
+            topMargin + (linesSoFarHeading * textFont.Height));
                     linesSoFarHeading++;
-
                 }
-                linesSoFarHeading++;
-                g.DrawString("Gross Due: " + Convert.ToString(visitTotal), headingFont, brush, leftMargin +
-                headingLeftMargin, topMargin + (linesSoFarHeading * textFont.Height));
-                linesSoFarHeading++;
-                linesSoFarHeading++;
-                linesSoFarHeading++;
-                linesSoFarHeading++;
+                amountOfEventsChecked++;
+                if (amountOfEventsChecked != totalEventsCount-1)
+                {
+                    if (HasRegistration(allEvents[amountOfEventsChecked]["EventID"].ToString())) 
+                    {
+                        e.HasMorePages = true;
+                    }                   
+                }
             }
-            visitTotal = 0;
-            amountofReportPrinted++;
-            if (!(amountofReportPrinted == pagesAmountExpected))
-            {
-                e.HasMorePages = true;
-            }*/
+        }
+
+        private DataRow GetLocationByID(string locationID)
+        {
+            DataRow[] LocationRows = DM.dtLocation.Select("LocationID = " + locationID);
+            return LocationRows[0];
+        }
+
+        private DataRow GetWhanauByID(string whanauID)
+        {
+            DataRow[] WhanauRows = DM.dtWhanau.Select("WhanauID = " + whanauID);
+            return WhanauRows[0];
+        }
+
+        private bool HasRegistration(string eventID)
+        {
+            return DM.dtEventRegister.Select("EventID = " + eventID).Length > 0;
+        }
+
+        string CreateSpace(int length)
+        {
+            return new string(' ', length);
         }
     }
 }

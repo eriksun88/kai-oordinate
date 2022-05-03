@@ -471,6 +471,7 @@ namespace menu
             this.Controls.Add(this.lstKai);
             this.Name = "KaiForm";
             this.Text = "0";
+         
             this.pnlAddKai.ResumeLayout(false);
             this.pnlAddKai.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAddServingQuantity)).EndInit();

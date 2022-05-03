@@ -71,14 +71,5 @@ namespace menu
         {
             daEventRegister.Update(dtEventRegister);
         }
-        private void DataModule_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void daEvent_RowUpdated(object sender, OleDbRowUpdatedEventArgs e)
-        {
-
-        }
     }
 }

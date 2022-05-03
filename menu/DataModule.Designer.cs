@@ -120,7 +120,6 @@ namespace menu
                         new System.Data.Common.DataColumnMapping("LocationID", "LocationID"),
                         new System.Data.Common.DataColumnMapping("EventDate", "EventDate")})});
             this.daEvent.UpdateCommand = this.oleDbUpdateCommand1;
-            this.daEvent.RowUpdated += new System.Data.OleDb.OleDbRowUpdatedEventHandler(this.daEvent_RowUpdated);
             // 
             // oleDbSelectCommand2
             // 
@@ -388,7 +387,6 @@ namespace menu
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "DataModule";
             this.Text = "DataModule";
-            this.Load += new System.EventHandler(this.DataModule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dsKaiOordinate)).EndInit();
             this.ResumeLayout(false);
 

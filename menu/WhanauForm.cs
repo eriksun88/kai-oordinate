@@ -312,6 +312,11 @@ namespace menu
                 return false;
             }
             return true;
-        }     
+        }
+
+        private void lblWhanauNo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -74,6 +74,7 @@ namespace menu
             this.lblWhanauNo.Size = new System.Drawing.Size(103, 24);
             this.lblWhanauNo.TabIndex = 10;
             this.lblWhanauNo.Text = "Whanau ID";
+           
             // 
             // lblFirstName
             // 

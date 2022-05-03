@@ -317,6 +317,7 @@ namespace menu
             this.Controls.Add(this.lstLocation);
             this.Name = "LocationsForm";
             this.Text = "Locations Management";
+            
             this.pnlAddLocation.ResumeLayout(false);
             this.pnlAddLocation.PerformLayout();
             this.ResumeLayout(false);
