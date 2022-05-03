@@ -18,8 +18,7 @@ namespace menu
     public partial class RegistrationForm : Form
     {
         private DataModule DM;
-        private MainForm mainForm;
-        
+        private MainForm mainForm;       
         private CurrencyManager cmEvents;
         private CurrencyManager cmWhanau;
         private CurrencyManager cmRegistrations;
@@ -60,25 +59,53 @@ namespace menu
 
         }
 
+        ///<Summary> method: hasRegistration
+        ///check whether the Registration reference to any exist Registration
+        ///</Summary>
+        private bool hasRegistration(string whanauID, string eventID)
+        {
+            DataRow[] registrationtRow = DM.dtEventRegister.Select("WhanauID = " + whanauID + " and EventID = " + eventID);
+            if (registrationtRow.Length == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+        ///<Summary> method: AddRegistration
+        ///add Registration object to DB
+        ///</Summary>
+        private void AddRegistration()
+        {
+
+            DataRow newRegistration = DM.dtEventRegister.NewRow();
+            newRegistration["EventID"] = dgvEvents["EventID", cmEvents.Position].Value;
+            newRegistration["WhanauID"] = dgvWhanau["WhanauID", cmWhanau.Position].Value;
+            newRegistration["KaiPreparation"] = ckbKaiPreparationAssitant.Checked;
+            DM.dsKaiOordinate.Tables["EventRegister"].Rows.Add(newRegistration);
+            DM.UpdateEventRegister();
+            MessageBox.Show("Entry added successfully");
+        }
         ///<Summary> method: btnAdd_Click
         ///add element to the list when click
         ///</Summary>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
+            if (hasRegistration(dgvWhanau["WhanauID", cmWhanau.Position].Value.ToString(), dgvEvents["EventID", cmEvents.Position].Value.ToString()))
             {
-                DataRow newRegistration = DM.dtEventRegister.NewRow();
-                newRegistration["EventID"] = dgvEvents["EventID", cmEvents.Position].Value;
-                newRegistration["WhanauID"] = dgvWhanau["WhanauID", cmWhanau.Position].Value;
-                newRegistration["KaiPreparation"] = ckbKaiPreparationAssitant.Checked;
-
-                DM.dsKaiOordinate.Tables["EventRegister"].Rows.Add(newRegistration);
-                DM.UpdateEventRegister();
-            } 
-            catch (Exception)
-            {
-                MessageBox.Show("Failed to add","Error");
+                MessageBox.Show("Whanau can only be registered to an event once", "Error");
             }
+            else
+            {
+                try
+                {
+                    AddRegistration();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Failed to add", "Error");
+                }
+            }
+            
         }
 
         ///<Summary> method: btnDelete_Click
@@ -89,9 +116,18 @@ namespace menu
             if (MessageBox.Show("Are you sure you want to delete this Registration?", "Warning",
             MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                DataRow deleteRegistrationRow = DM.dtEventRegister.Rows[cmRegistrations.Position];
-                deleteRegistrationRow.Delete();
-                DM.UpdateEvent();
+                try
+                {
+                    DataRow deleteRegistrationRow = DM.dtEventRegister.Rows[cmRegistrations.Position];
+                    deleteRegistrationRow.Delete();
+                    DM.UpdateEvent();
+                    MessageBox.Show("Entry removed successfully");
+                }
+                catch
+                {
+                    MessageBox.Show("Failed to delete Registration");
+                }
+                
             }
         }
     }

@@ -131,7 +131,7 @@ namespace menu
         ///</Summary>
         private void PopulateTxtEvent()
         {
-            DataRow selectedEvent = Array.Find(EventRows, r => r["EventID"].ToString() == DM.dtKai.Rows[currencyManager.Position]["EventID"].ToString());
+            DataRow selectedEvent = Array.Find(EventRows, row => row["EventID"].ToString() == DM.dtKai.Rows[currencyManager.Position]["EventID"].ToString());
             if (selectedEvent != null) 
             {
                 txtEvent.Text = selectedEvent["EventName"].ToString();

@@ -250,7 +250,7 @@ namespace menu
         ///<Summary> method: btnSave_Click
         ///save element to the list when click
         ///</Summary>
-        private void btnSave_Click_1(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             if (IsValidWhanau())
             {

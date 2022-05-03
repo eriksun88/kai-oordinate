@@ -32,6 +32,9 @@ namespace menu
             mainForm = mfm;
         }
 
+        ///<Summary> method: btnGenerateReport_Click
+        ///open the report when click
+        ///</Summary>
         private void btnGenerateReport_Click(object sender, EventArgs e)
         {
             amountOfEventsChecked = 0;
@@ -49,6 +52,9 @@ namespace menu
             Close();
         }
 
+        ///<Summary> method: printReport_PrintPage
+        ///populate the page data
+        ///</Summary>
         private void printReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -58,10 +64,7 @@ namespace menu
             Brush brush = new SolidBrush(Color.Black);
             int leftMargin = e.MarginBounds.Left;
             int topMargin = e.MarginBounds.Top;
-            int headingLeftMargin = 50;
-            int topMarginDetails = topMargin + 70;
-            int rightMargin = e.MarginBounds.Right;
-
+            int headingLeftMargin = 50;      
             DataRow drEvent = allEvents[amountOfEventsChecked];
             DataRow[] eventRegisterRows = DM.dtEventRegister.Select("EventID = " + drEvent["EventID"]);
             if (eventRegisterRows.Length > 0)
@@ -94,8 +97,8 @@ namespace menu
                 {
                     DataRow drWhanau = GetWhanauByID(drEventRegister["WhanauID"].ToString());
                     g.DrawString(drWhanau["FirstName"] + CreateSpace(20) + drWhanau["LastName"] + CreateSpace(20) +
-             drWhanau["Phone"] + CreateSpace(20) + drEventRegister["KaiPreparation"], textFont, brush, leftMargin + headingLeftMargin,
-            topMargin + (linesSoFarHeading * textFont.Height));
+                    drWhanau["Phone"] + CreateSpace(20) + drEventRegister["KaiPreparation"], textFont, brush, leftMargin + headingLeftMargin,
+                    topMargin + (linesSoFarHeading * textFont.Height));
                     linesSoFarHeading++;
                 }
                 amountOfEventsChecked++;
@@ -104,28 +107,40 @@ namespace menu
                     if (HasRegistration(allEvents[amountOfEventsChecked]["EventID"].ToString())) 
                     {
                         e.HasMorePages = true;
-                    }                   
+                    } 
+                    else
+                    {
+                        e.HasMorePages = false;
+                    }
                 }
             }
         }
-
+        ///<Summary> method: GetLocationByID
+        ///get location data by provided ID
+        ///</Summary>
         private DataRow GetLocationByID(string locationID)
         {
             DataRow[] LocationRows = DM.dtLocation.Select("LocationID = " + locationID);
             return LocationRows[0];
         }
-
+        ///<Summary> method: GetWhanauByID
+        ///get Whanau data by provided ID
+        ///</Summary>
         private DataRow GetWhanauByID(string whanauID)
         {
             DataRow[] WhanauRows = DM.dtWhanau.Select("WhanauID = " + whanauID);
             return WhanauRows[0];
         }
-
+        ///<Summary> method: HasRegistration
+        ///check whether any event Registration reference to provided event ID
+        ///</Summary>
         private bool HasRegistration(string eventID)
         {
             return DM.dtEventRegister.Select("EventID = " + eventID).Length > 0;
         }
-
+        ///<Summary> method: CreateSpace
+        ///generate an empty string of provided length
+        ///</Summary>
         string CreateSpace(int length)
         {
             return new string(' ', length);

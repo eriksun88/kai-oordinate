@@ -47,7 +47,6 @@ namespace menu
             this.btnUpdate = new FontAwesome.Sharp.IconButton();
             this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.dgvFullName = new System.Windows.Forms.DataGridView();
-            this.pnlAddWhanau = new System.Windows.Forms.Panel();
             this.txtAddAddress = new System.Windows.Forms.TextBox();
             this.txtAddPhone = new System.Windows.Forms.TextBox();
             this.txtAddEmail = new System.Windows.Forms.TextBox();
@@ -61,6 +60,7 @@ namespace menu
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtWhanauID = new System.Windows.Forms.TextBox();
+            this.pnlAddWhanau = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFullName)).BeginInit();
             this.pnlAddWhanau.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +74,6 @@ namespace menu
             this.lblWhanauNo.Size = new System.Drawing.Size(103, 24);
             this.lblWhanauNo.TabIndex = 10;
             this.lblWhanauNo.Text = "Whanau ID";
-           
             // 
             // lblFirstName
             // 
@@ -256,31 +255,12 @@ namespace menu
             this.dgvFullName.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFullName.Location = new System.Drawing.Point(21, 16);
             this.dgvFullName.Name = "dgvFullName";
-            this.dgvFullName.Size = new System.Drawing.Size(303, 305);
+            this.dgvFullName.Size = new System.Drawing.Size(340, 305);
             this.dgvFullName.TabIndex = 29;
-            // 
-            // pnlAddWhanau
-            // 
-            this.pnlAddWhanau.Controls.Add(this.txtAddAddress);
-            this.pnlAddWhanau.Controls.Add(this.txtAddPhone);
-            this.pnlAddWhanau.Controls.Add(this.txtAddEmail);
-            this.pnlAddWhanau.Controls.Add(this.txtAddLastName);
-            this.pnlAddWhanau.Controls.Add(this.txtAddFirstName);
-            this.pnlAddWhanau.Controls.Add(this.btnCancel);
-            this.pnlAddWhanau.Controls.Add(this.btnSave);
-            this.pnlAddWhanau.Controls.Add(this.label5);
-            this.pnlAddWhanau.Controls.Add(this.label4);
-            this.pnlAddWhanau.Controls.Add(this.label3);
-            this.pnlAddWhanau.Controls.Add(this.label2);
-            this.pnlAddWhanau.Controls.Add(this.label1);
-            this.pnlAddWhanau.Location = new System.Drawing.Point(819, 28);
-            this.pnlAddWhanau.Name = "pnlAddWhanau";
-            this.pnlAddWhanau.Size = new System.Drawing.Size(400, 324);
-            this.pnlAddWhanau.TabIndex = 30;
             // 
             // txtAddAddress
             // 
-            this.txtAddAddress.Location = new System.Drawing.Point(160, 201);
+            this.txtAddAddress.Location = new System.Drawing.Point(142, 197);
             this.txtAddAddress.Multiline = true;
             this.txtAddAddress.Name = "txtAddAddress";
             this.txtAddAddress.Size = new System.Drawing.Size(195, 55);
@@ -288,28 +268,28 @@ namespace menu
             // 
             // txtAddPhone
             // 
-            this.txtAddPhone.Location = new System.Drawing.Point(157, 157);
+            this.txtAddPhone.Location = new System.Drawing.Point(139, 153);
             this.txtAddPhone.Name = "txtAddPhone";
             this.txtAddPhone.Size = new System.Drawing.Size(146, 20);
             this.txtAddPhone.TabIndex = 38;
             // 
             // txtAddEmail
             // 
-            this.txtAddEmail.Location = new System.Drawing.Point(157, 116);
+            this.txtAddEmail.Location = new System.Drawing.Point(139, 112);
             this.txtAddEmail.Name = "txtAddEmail";
             this.txtAddEmail.Size = new System.Drawing.Size(146, 20);
             this.txtAddEmail.TabIndex = 37;
             // 
             // txtAddLastName
             // 
-            this.txtAddLastName.Location = new System.Drawing.Point(157, 75);
+            this.txtAddLastName.Location = new System.Drawing.Point(139, 71);
             this.txtAddLastName.Name = "txtAddLastName";
             this.txtAddLastName.Size = new System.Drawing.Size(146, 20);
             this.txtAddLastName.TabIndex = 36;
             // 
             // txtAddFirstName
             // 
-            this.txtAddFirstName.Location = new System.Drawing.Point(157, 25);
+            this.txtAddFirstName.Location = new System.Drawing.Point(139, 21);
             this.txtAddFirstName.Name = "txtAddFirstName";
             this.txtAddFirstName.Size = new System.Drawing.Size(146, 20);
             this.txtAddFirstName.TabIndex = 32;
@@ -322,7 +302,7 @@ namespace menu
             this.btnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCancel.IconSize = 36;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(284, 267);
+            this.btnCancel.Location = new System.Drawing.Point(266, 263);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(113, 44);
             this.btnCancel.TabIndex = 35;
@@ -339,20 +319,20 @@ namespace menu
             this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSave.IconSize = 36;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(176, 267);
+            this.btnSave.Location = new System.Drawing.Point(158, 263);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(99, 44);
             this.btnSave.TabIndex = 33;
             this.btnSave.Text = "SAVE";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(34, 196);
+            this.label5.Location = new System.Drawing.Point(16, 192);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 24);
             this.label5.TabIndex = 32;
@@ -362,7 +342,7 @@ namespace menu
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(34, 154);
+            this.label4.Location = new System.Drawing.Point(16, 150);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 24);
             this.label4.TabIndex = 32;
@@ -372,7 +352,7 @@ namespace menu
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(34, 116);
+            this.label3.Location = new System.Drawing.Point(16, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 24);
             this.label3.TabIndex = 32;
@@ -382,7 +362,7 @@ namespace menu
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(34, 70);
+            this.label2.Location = new System.Drawing.Point(16, 66);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 24);
             this.label2.TabIndex = 32;
@@ -392,7 +372,7 @@ namespace menu
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(34, 25);
+            this.label1.Location = new System.Drawing.Point(16, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 24);
             this.label1.TabIndex = 32;
@@ -405,14 +385,34 @@ namespace menu
             this.txtWhanauID.Size = new System.Drawing.Size(146, 20);
             this.txtWhanauID.TabIndex = 31;
             // 
+            // pnlAddWhanau
+            // 
+            this.pnlAddWhanau.Controls.Add(this.txtAddAddress);
+            this.pnlAddWhanau.Controls.Add(this.label1);
+            this.pnlAddWhanau.Controls.Add(this.txtAddPhone);
+            this.pnlAddWhanau.Controls.Add(this.label2);
+            this.pnlAddWhanau.Controls.Add(this.txtAddEmail);
+            this.pnlAddWhanau.Controls.Add(this.label3);
+            this.pnlAddWhanau.Controls.Add(this.txtAddLastName);
+            this.pnlAddWhanau.Controls.Add(this.label4);
+            this.pnlAddWhanau.Controls.Add(this.txtAddFirstName);
+            this.pnlAddWhanau.Controls.Add(this.label5);
+            this.pnlAddWhanau.Controls.Add(this.btnCancel);
+            this.pnlAddWhanau.Controls.Add(this.btnSave);
+            this.pnlAddWhanau.Location = new System.Drawing.Point(371, 16);
+            this.pnlAddWhanau.Name = "pnlAddWhanau";
+            this.pnlAddWhanau.Size = new System.Drawing.Size(404, 324);
+            this.pnlAddWhanau.TabIndex = 32;
+            this.pnlAddWhanau.Visible = false;
+            // 
             // WhanauForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(1296, 450);
-            this.Controls.Add(this.txtWhanauID);
+            this.ClientSize = new System.Drawing.Size(790, 450);
             this.Controls.Add(this.pnlAddWhanau);
+            this.Controls.Add(this.txtWhanauID);
             this.Controls.Add(this.dgvFullName);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnDelete);
@@ -460,7 +460,6 @@ namespace menu
         private FontAwesome.Sharp.IconButton btnUpdate;
         private FontAwesome.Sharp.IconButton btnAdd;
         private System.Windows.Forms.DataGridView dgvFullName;
-        private System.Windows.Forms.Panel pnlAddWhanau;
         private System.Windows.Forms.TextBox txtAddAddress;
         private System.Windows.Forms.TextBox txtAddPhone;
         private System.Windows.Forms.TextBox txtAddEmail;
@@ -474,5 +473,6 @@ namespace menu
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtWhanauID;
+        private System.Windows.Forms.Panel pnlAddWhanau;
     }
 }

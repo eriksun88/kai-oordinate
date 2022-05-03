@@ -79,10 +79,6 @@ namespace menu
             }
         }
 
-        private void LoadLocation()
-        { 
-        }
-
         ///<Summary> method: btnAdd_Click
         ///add element to the list when click
         ///</Summary>
@@ -97,24 +93,10 @@ namespace menu
             txtAddLocationName.Text = "";
             txtAddAddress.Text = "";
             pnlAddLocation.Show();
-            
-            /*lblLocationID.Text = null;
-            DataRow newLocationRow = DM.dtLocation.NewRow();
-            if ((txtLocationName.Text == "") || (txtAddress.Text == ""))
-            {
-                MessageBox.Show("You must enter a value for each of the text fields", "Error");
-                return;
-            }
-            
-            newLocationRow["LocationName"] = txtLocationName.Text;
-            newLocationRow["Address"] = txtAddress.Text;            
-            DM.dtLocation.Rows.Add(newLocationRow);
-            DM.UpdateLocation();
-            MessageBox.Show("Location added successfully", "Success");*/
         }
 
-        ///<Summary> method: IsValidKai
-        ///
+        ///<Summary> method: IsValidLocation
+        ///check the user input is valid or not
         ///</Summary>
         private bool IsValidLocation ()
         {                      
@@ -137,7 +119,7 @@ namespace menu
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             lstLocation.Visible = false;
-            btnUpdate.Enabled = false;
+            btnAdd.Enabled = false;
             btnDelete.Enabled = false;
             btnUp.Enabled = false;
             btnDown.Enabled = false;
@@ -146,35 +128,52 @@ namespace menu
             txtAddAddress.Text = txtAddress.Text;
             pnlAddLocation.Show();
         }
+        ///<Summary> method: hasEvent
+        ///check whether the location to be delete reference to any event
+        ///</Summary>
+        private bool hasEvent(string locationID)
+        {
+            DataRow[] EventRow = DM.dtEvent.Select("LocationID = " + locationID);
+            if (EventRow.Length == 0)
+            {
+                return false;
+            }
+            return true;
+        }
 
         ///<Summary> method: btnDelete_Click
         ///delete element from the list when click
         ///</Summary>
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DataRow deleteLocationRow = DM.dtLocation.Rows[currencyManager.Position];
-            DataRow[] EventRow = DM.dtEvent.Select("LocationID = " + lblLocationID.Text);            
-            if (EventRow.Length != 0)
+            DataRow deleteLocationRow = DM.dtLocation.Rows[currencyManager.Position];           
+            if (hasEvent(txtLocationID.Text))
             {
-                MessageBox.Show("You may only delete Location that are not allocated to Event", "Error");
+                MessageBox.Show("You may only delete locations that have no events", "Error");
             }
             else
             {
                 if (MessageBox.Show("Are you sure you want to delete this record?", "Warning",
                 MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    deleteLocationRow.Delete();
-                    DM.UpdateLocation();
+                    try
+                    {
+                        deleteLocationRow.Delete();
+                        DM.UpdateLocation();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Failed to delete Location");
+                    }
                 }
             }
         }
         ///<Summary> method: AddLocation
-        ///
+        ///add Location object to DB
         ///</Summary>
         private void AddLocation()
         {
-            lblLocationID.Text = null;
-            DataRow newLocationRow = DM.dtKai.NewRow();
+            DataRow newLocationRow = DM.dtLocation.NewRow();
             newLocationRow["LocationName"] = txtAddLocationName.Text;
             newLocationRow["Address"] = txtAddAddress.Text;
             DM.dtLocation.Rows.Add(newLocationRow);
@@ -183,14 +182,14 @@ namespace menu
         }
 
         ///<Summary> method: UpdateLocation
-        ///
+        ///Update Location object to DB
         ///</Summary>
         private void UpdateLocation()
         {
-            DataRow newLocationRow = DM.dtKai.NewRow();
-            newLocationRow["LocationName"] = txtAddLocationName.Text;
-            newLocationRow["Address"] = txtAddAddress.Text;
-            DM.dtLocation.Rows.Add(newLocationRow);
+            DataRow updateLocation = DM.dtLocation.Rows[currencyManager.Position];
+            updateLocation["LocationName"] = txtAddLocationName.Text;
+            updateLocation["Address"] = txtAddAddress.Text;
+            currencyManager.EndCurrentEdit();
             DM.UpdateLocation();
             MessageBox.Show("Location uppdate successfully", "Success");
         }
@@ -207,6 +206,8 @@ namespace menu
                     try
                     {
                         AddLocation();
+                        currencyManager.Position = currencyManager.Count;
+                        InitView();
                     }
                     catch
                     {
@@ -218,6 +219,7 @@ namespace menu
                     try
                     {
                         UpdateLocation();
+                        InitView();
                     }
                     catch
                     {
@@ -227,10 +229,10 @@ namespace menu
             }
         }
 
-        ///<Summary> method: btnCancel_Click
-        ///cancel 
+        ///<Summary> method: InitView
+        ///initialize the form view to hide the panel and enable buttons 
         ///</Summary>
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void InitView()
         {
             pnlAddLocation.Hide();
             lstLocation.Visible = true;
@@ -240,6 +242,14 @@ namespace menu
             btnUp.Enabled = true;
             btnDown.Enabled = true;
             btnReturn.Enabled = true;
+        }
+
+        ///<Summary> method: btnCancel_Click
+        ///cancel 
+        ///</Summary>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            InitView();
         }
     }
 }

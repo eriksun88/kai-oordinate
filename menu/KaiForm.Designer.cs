@@ -293,7 +293,7 @@ namespace menu
             this.pnlAddKai.Controls.Add(this.label4);
             this.pnlAddKai.Controls.Add(this.label5);
             this.pnlAddKai.Controls.Add(this.label6);
-            this.pnlAddKai.Location = new System.Drawing.Point(743, 28);
+            this.pnlAddKai.Location = new System.Drawing.Point(290, 12);
             this.pnlAddKai.Name = "pnlAddKai";
             this.pnlAddKai.Size = new System.Drawing.Size(447, 307);
             this.pnlAddKai.TabIndex = 29;
@@ -447,7 +447,7 @@ namespace menu
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(1335, 450);
+            this.ClientSize = new System.Drawing.Size(792, 450);
             this.Controls.Add(this.pnlAddKai);
             this.Controls.Add(this.txtServingQuantity);
             this.Controls.Add(this.txtPreparationTime);
@@ -470,8 +470,7 @@ namespace menu
             this.Controls.Add(this.lblKaiNo);
             this.Controls.Add(this.lstKai);
             this.Name = "KaiForm";
-            this.Text = "0";
-         
+            this.Text = "Kai Management";
             this.pnlAddKai.ResumeLayout(false);
             this.pnlAddKai.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAddServingQuantity)).EndInit();
