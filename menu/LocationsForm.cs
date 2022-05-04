@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -100,14 +101,14 @@ namespace menu
         ///</Summary>
         private bool IsValidLocation ()
         {                      
-            if (txtAddLocationName.Text == "")
+            if (!Regex.IsMatch(txtAddLocationName.Text, @"^[a-zA-Z ]+$"))
             {
-                MessageBox.Show("You must enter a Location name", "Error");
+                MessageBox.Show("You must enter a valid Location name", "Error");
                 return false;
             }
-            if (txtAddAddress.Text == "")
+            if (txtAddAddress.Text.Trim() == "")
             {
-                MessageBox.Show("You must enter an Address", "Error");
+                MessageBox.Show("You must enter an valid Address", "Error");
                 return false;
             }
             return true;
@@ -160,10 +161,11 @@ namespace menu
                     {
                         deleteLocationRow.Delete();
                         DM.UpdateLocation();
+                        MessageBox.Show("Location delete successfully");
                     }
                     catch
                     {
-                        MessageBox.Show("Failed to delete Location");
+                        MessageBox.Show("Failed to delete Location", "Error");
                     }
                 }
             }

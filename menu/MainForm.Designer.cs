@@ -60,7 +60,7 @@ namespace menu
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(160, 99);
             this.btnExit.TabIndex = 14;
-            this.btnExit.Text = "Exit";
+            this.btnExit.Text = "EXIT";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -75,7 +75,7 @@ namespace menu
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(160, 99);
             this.btnReport.TabIndex = 13;
-            this.btnReport.Text = "Report";
+            this.btnReport.Text = "REPORT";
             this.btnReport.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnReport.UseVisualStyleBackColor = true;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
@@ -90,7 +90,7 @@ namespace menu
             this.btnRegistration.Name = "btnRegistration";
             this.btnRegistration.Size = new System.Drawing.Size(160, 99);
             this.btnRegistration.TabIndex = 12;
-            this.btnRegistration.Text = "Registration";
+            this.btnRegistration.Text = "REGISTRATION";
             this.btnRegistration.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRegistration.UseVisualStyleBackColor = true;
             this.btnRegistration.Click += new System.EventHandler(this.btnRegistration_Click);
@@ -105,7 +105,7 @@ namespace menu
             this.btnLocations.Name = "btnLocations";
             this.btnLocations.Size = new System.Drawing.Size(160, 99);
             this.btnLocations.TabIndex = 11;
-            this.btnLocations.Text = "Locations";
+            this.btnLocations.Text = "LOCATIONS";
             this.btnLocations.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLocations.UseVisualStyleBackColor = true;
             this.btnLocations.Click += new System.EventHandler(this.btnLocations_Click);
@@ -120,7 +120,7 @@ namespace menu
             this.btnWhanau.Name = "btnWhanau";
             this.btnWhanau.Size = new System.Drawing.Size(160, 99);
             this.btnWhanau.TabIndex = 10;
-            this.btnWhanau.Text = "Whānau";
+            this.btnWhanau.Text = "WHANAU";
             this.btnWhanau.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnWhanau.UseVisualStyleBackColor = true;
             this.btnWhanau.Click += new System.EventHandler(this.btnWhanau_Click);
@@ -135,7 +135,7 @@ namespace menu
             this.btnEvents.Name = "btnEvents";
             this.btnEvents.Size = new System.Drawing.Size(160, 99);
             this.btnEvents.TabIndex = 9;
-            this.btnEvents.Text = "Events";
+            this.btnEvents.Text = "EVENTS";
             this.btnEvents.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEvents.UseVisualStyleBackColor = true;
             this.btnEvents.Click += new System.EventHandler(this.btnEvents_Click);
@@ -150,7 +150,7 @@ namespace menu
             this.btnKai.Name = "btnKai";
             this.btnKai.Size = new System.Drawing.Size(160, 99);
             this.btnKai.TabIndex = 8;
-            this.btnKai.Text = "Kai";
+            this.btnKai.Text = "KAI";
             this.btnKai.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnKai.UseVisualStyleBackColor = true;
             this.btnKai.Click += new System.EventHandler(this.btnKai_Click);

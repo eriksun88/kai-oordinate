@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -133,17 +134,17 @@ namespace menu
         {
             if (cboAddLocation.Text == "")
             {
-                MessageBox.Show("You must choose an Location name");
+                MessageBox.Show("You must choose an Location name", "Error");
                 return false;
             }
-            if (txtAddEventName.Text.Trim() == "")
+            if (!Regex.IsMatch(txtAddEventName.Text, @"^[a-zA-Z ]+$"))
             {
-                MessageBox.Show("You must enter a Event name");
+                MessageBox.Show("You must enter a Event name", "Error");
                 return false;
             }
             if (dtpAddEventDate.Text == "")
             {
-                MessageBox.Show("You must enter a valid Event Date");
+                MessageBox.Show("You must enter a valid Event Date", "Error");
                 return false;
             }            
             return true;
@@ -171,7 +172,7 @@ namespace menu
             DataRow deleteEventRow = DM.dtEvent.Rows[currencyManager.Position];
             if (hasRegisterOrKai(txtEventID.Text))
             {
-                MessageBox.Show("You may only delete an event that has no kai");
+                MessageBox.Show("You may only delete an event that has no kai", "Error");
             }
             else
             {
@@ -185,7 +186,7 @@ namespace menu
                     }
                     catch
                     {
-                        MessageBox.Show("Failed to delete Event");
+                        MessageBox.Show("Failed to delete Event", "Error");
                     }                   
                 }
             }

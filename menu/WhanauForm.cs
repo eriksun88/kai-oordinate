@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -99,23 +100,6 @@ namespace menu
             txtAddPhone.Text = "";
             txtAddAddress.Text = "";
             pnlAddWhanau.Show();
-
-            /*lblWhanauID.Text = null;
-            DataRow newWhanauRow = DM.dtWhanau.NewRow();
-            if ((txtFirstName.Text == "") || (txtLastName.Text == "")|| (txtEmail.Text == "")|| (txtPhone.Text == "")|| (txtAddress.Text == ""))
-            {
-                MessageBox.Show("You must enter a value for each of the text fields", "Error");
-                return;
-            }
-
-            newWhanauRow["FirstName"] = txtFirstName.Text;
-            newWhanauRow["LastName"] = txtLastName.Text;
-            newWhanauRow["Email"] = txtEmail.Text;
-            newWhanauRow["Phone"] = txtPhone.Text;
-            newWhanauRow["Address"] = txtAddress.Text;
-            DM.dtWhanau.Rows.Add(newWhanauRow);
-            DM.UpdateWhanau();
-            MessageBox.Show("Whanau added successfully", "Success");*/
         }
 
         ///<Summary> method: btnUpdate_Click
@@ -135,21 +119,6 @@ namespace menu
             txtAddPhone.Text = txtPhone.Text;
             txtAddAddress.Text = txtAddress.Text;
             pnlAddWhanau.Show();
-
-            /* DataRow updateWhanauRow = DM.dtWhanau.Rows[currencyManager.Position];
-             if ((txtFirstName.Text == "") || (txtLastName.Text == "") || (txtEmail.Text == "") || (txtPhone.Text == "") || (txtAddress.Text == ""))
-             {
-                 MessageBox.Show("You must type in a FirstName, LastName,  Email, Phone and Address", "Error");
-                 return;
-             }
-             updateWhanauRow["FirstName"] = txtFirstName.Text;
-             updateWhanauRow["LastName"] = txtLastName.Text;
-             updateWhanauRow["Email"] = txtEmail.Text;
-             updateWhanauRow["Phone"] = txtPhone.Text;
-             updateWhanauRow["Address"] = txtAddress.Text;
-             currencyManager.EndCurrentEdit();
-             DM.UpdateWhanau();
-             MessageBox.Show("Whanau updated successfully", "Success");*/
         }
 
         ///<Summary> method: hasEventRegister
@@ -282,41 +251,36 @@ namespace menu
             }
         }
         ///<Summary> method: IsValidKai
-        ///
+        ///check the user input is valid or not
         ///</Summary>
         private bool IsValidWhanau()
         {           
-            if (txtAddFirstName.Text.Trim() == "")
+            if (!Regex.IsMatch(txtAddFirstName.Text, @"^[a-zA-Z ]+$"))
             {
-                MessageBox.Show("You must enter a First name", "Error");
+                MessageBox.Show("You must enter a valid First name", "Error");
                 return false;
             }
-            if (txtAddLastName.Text.Trim() == "")
+            if (!Regex.IsMatch(txtAddLastName.Text, @"^[a-zA-Z ]+$"))
             {
-                MessageBox.Show("You must enter a Last name", "Error");
+                MessageBox.Show("You must enter a valid Last name", "Error");
                 return false;
             }
-            if (txtAddEmail.Text.Trim() == "")
+            if (!Regex.IsMatch(txtAddEmail.Text, @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*@((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z"))
             {
-                MessageBox.Show("You must enter a Email Address", "Error");
+                MessageBox.Show("You must enter a valid Email Address", "Error");
                 return false;
             }
-            if (txtAddPhone.Text.Trim() == "")
+            if (!Regex.IsMatch(txtAddPhone.Text, @"^[0-9]+$"))
             {
-                MessageBox.Show("You must enter a Phone Number", "Error");
+                MessageBox.Show("You must enter a valid Phone Number", "Error");
                 return false;
             }
             if (txtAddAddress.Text.Trim() == "")
             {
-                MessageBox.Show("You must enter a Address", "Error");
+                MessageBox.Show("You must enter a valid Address", "Error");
                 return false;
             }
             return true;
-        }
-
-        private void lblWhanauNo_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

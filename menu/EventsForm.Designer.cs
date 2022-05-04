@@ -60,7 +60,7 @@ namespace menu
             // lstEvent
             // 
             this.lstEvent.FormattingEnabled = true;
-            this.lstEvent.Location = new System.Drawing.Point(35, 28);
+            this.lstEvent.Location = new System.Drawing.Point(12, 28);
             this.lstEvent.Name = "lstEvent";
             this.lstEvent.Size = new System.Drawing.Size(239, 277);
             this.lstEvent.TabIndex = 0;
@@ -69,6 +69,7 @@ namespace menu
             // 
             this.lblEventNo.AutoSize = true;
             this.lblEventNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEventNo.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblEventNo.Location = new System.Drawing.Point(327, 62);
             this.lblEventNo.Name = "lblEventNo";
             this.lblEventNo.Size = new System.Drawing.Size(80, 24);
@@ -79,6 +80,7 @@ namespace menu
             // 
             this.lblEventName.AutoSize = true;
             this.lblEventName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEventName.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblEventName.Location = new System.Drawing.Point(327, 123);
             this.lblEventName.Name = "lblEventName";
             this.lblEventName.Size = new System.Drawing.Size(114, 24);
@@ -89,6 +91,7 @@ namespace menu
             // 
             this.lblLocation.AutoSize = true;
             this.lblLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocation.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblLocation.Location = new System.Drawing.Point(327, 181);
             this.lblLocation.Name = "lblLocation";
             this.lblLocation.Size = new System.Drawing.Size(81, 24);
@@ -99,6 +102,7 @@ namespace menu
             // 
             this.lblEventDate.AutoSize = true;
             this.lblEventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEventDate.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblEventDate.Location = new System.Drawing.Point(327, 242);
             this.lblEventDate.Name = "lblEventDate";
             this.lblEventDate.Size = new System.Drawing.Size(101, 24);
@@ -107,16 +111,18 @@ namespace menu
             // 
             // txtEventName
             // 
-            this.txtEventName.Location = new System.Drawing.Point(447, 128);
+            this.txtEventName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEventName.Location = new System.Drawing.Point(449, 120);
             this.txtEventName.Name = "txtEventName";
-            this.txtEventName.Size = new System.Drawing.Size(146, 20);
+            this.txtEventName.Size = new System.Drawing.Size(146, 29);
             this.txtEventName.TabIndex = 14;
             // 
             // txtLocation
             // 
-            this.txtLocation.Location = new System.Drawing.Point(447, 186);
+            this.txtLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLocation.Location = new System.Drawing.Point(449, 178);
             this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(146, 20);
+            this.txtLocation.Size = new System.Drawing.Size(146, 29);
             this.txtLocation.TabIndex = 15;
             // 
             // btnUp
@@ -220,16 +226,18 @@ namespace menu
             // 
             // txtEventDate
             // 
-            this.txtEventDate.Location = new System.Drawing.Point(447, 242);
+            this.txtEventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEventDate.Location = new System.Drawing.Point(449, 239);
             this.txtEventDate.Name = "txtEventDate";
-            this.txtEventDate.Size = new System.Drawing.Size(146, 20);
+            this.txtEventDate.Size = new System.Drawing.Size(146, 29);
             this.txtEventDate.TabIndex = 27;
             // 
             // txtEventID
             // 
-            this.txtEventID.Location = new System.Drawing.Point(449, 62);
+            this.txtEventID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEventID.Location = new System.Drawing.Point(449, 57);
             this.txtEventID.Name = "txtEventID";
-            this.txtEventID.Size = new System.Drawing.Size(146, 20);
+            this.txtEventID.Size = new System.Drawing.Size(146, 29);
             this.txtEventID.TabIndex = 28;
             // 
             // pnlEvent
@@ -242,7 +250,7 @@ namespace menu
             this.pnlEvent.Controls.Add(this.dtpAddEventDate);
             this.pnlEvent.Controls.Add(this.btnSave);
             this.pnlEvent.Controls.Add(this.lblAddEventDate);
-            this.pnlEvent.Location = new System.Drawing.Point(314, 19);
+            this.pnlEvent.Location = new System.Drawing.Point(280, 19);
             this.pnlEvent.Name = "pnlEvent";
             this.pnlEvent.Size = new System.Drawing.Size(407, 286);
             this.pnlEvent.TabIndex = 29;
@@ -250,16 +258,18 @@ namespace menu
             // 
             // cboAddLocation
             // 
+            this.cboAddLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboAddLocation.FormattingEnabled = true;
-            this.cboAddLocation.Location = new System.Drawing.Point(189, 94);
+            this.cboAddLocation.Location = new System.Drawing.Point(186, 85);
             this.cboAddLocation.Name = "cboAddLocation";
-            this.cboAddLocation.Size = new System.Drawing.Size(143, 21);
+            this.cboAddLocation.Size = new System.Drawing.Size(143, 32);
             this.cboAddLocation.TabIndex = 44;
             // 
             // lblAddEventName
             // 
             this.lblAddEventName.AutoSize = true;
             this.lblAddEventName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddEventName.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblAddEventName.Location = new System.Drawing.Point(43, 47);
             this.lblAddEventName.Name = "lblAddEventName";
             this.lblAddEventName.Size = new System.Drawing.Size(114, 24);
@@ -268,15 +278,17 @@ namespace menu
             // 
             // txtAddEventName
             // 
-            this.txtAddEventName.Location = new System.Drawing.Point(187, 52);
+            this.txtAddEventName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddEventName.Location = new System.Drawing.Point(186, 43);
             this.txtAddEventName.Name = "txtAddEventName";
-            this.txtAddEventName.Size = new System.Drawing.Size(146, 20);
+            this.txtAddEventName.Size = new System.Drawing.Size(146, 29);
             this.txtAddEventName.TabIndex = 41;
             // 
             // lblAddLocation
             // 
             this.lblAddLocation.AutoSize = true;
             this.lblAddLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddLocation.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblAddLocation.Location = new System.Drawing.Point(43, 88);
             this.lblAddLocation.Name = "lblAddLocation";
             this.lblAddLocation.Size = new System.Drawing.Size(81, 24);
@@ -303,10 +315,11 @@ namespace menu
             // dtpAddEventDate
             // 
             this.dtpAddEventDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpAddEventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpAddEventDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpAddEventDate.Location = new System.Drawing.Point(187, 132);
+            this.dtpAddEventDate.Location = new System.Drawing.Point(186, 126);
             this.dtpAddEventDate.Name = "dtpAddEventDate";
-            this.dtpAddEventDate.Size = new System.Drawing.Size(181, 20);
+            this.dtpAddEventDate.Size = new System.Drawing.Size(181, 29);
             this.dtpAddEventDate.TabIndex = 37;
             this.dtpAddEventDate.Value = new System.DateTime(2022, 5, 1, 0, 0, 0, 0);
             // 
@@ -331,6 +344,7 @@ namespace menu
             // 
             this.lblAddEventDate.AutoSize = true;
             this.lblAddEventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddEventDate.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblAddEventDate.Location = new System.Drawing.Point(43, 130);
             this.lblAddEventDate.Name = "lblAddEventDate";
             this.lblAddEventDate.Size = new System.Drawing.Size(101, 24);
@@ -342,7 +356,7 @@ namespace menu
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(803, 450);
+            this.ClientSize = new System.Drawing.Size(732, 450);
             this.Controls.Add(this.pnlEvent);
             this.Controls.Add(this.txtEventID);
             this.Controls.Add(this.txtEventDate);

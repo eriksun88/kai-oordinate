@@ -55,16 +55,19 @@ namespace menu
             // 
             // lstLocation
             // 
+            this.lstLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstLocation.FormattingEnabled = true;
+            this.lstLocation.ItemHeight = 24;
             this.lstLocation.Location = new System.Drawing.Point(28, 27);
             this.lstLocation.Name = "lstLocation";
-            this.lstLocation.Size = new System.Drawing.Size(239, 277);
+            this.lstLocation.Size = new System.Drawing.Size(239, 268);
             this.lstLocation.TabIndex = 1;
             // 
             // lblLocationNo
             // 
             this.lblLocationNo.AutoSize = true;
             this.lblLocationNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocationNo.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblLocationNo.Location = new System.Drawing.Point(344, 27);
             this.lblLocationNo.Name = "lblLocationNo";
             this.lblLocationNo.Size = new System.Drawing.Size(103, 24);
@@ -75,6 +78,7 @@ namespace menu
             // 
             this.lblLocationName.AutoSize = true;
             this.lblLocationName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocationName.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblLocationName.Location = new System.Drawing.Point(310, 114);
             this.lblLocationName.Name = "lblLocationName";
             this.lblLocationName.Size = new System.Drawing.Size(137, 24);
@@ -85,7 +89,8 @@ namespace menu
             // 
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(367, 205);
+            this.lblAddress.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblAddress.Location = new System.Drawing.Point(366, 187);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(80, 24);
             this.lblAddress.TabIndex = 12;
@@ -93,15 +98,16 @@ namespace menu
             // 
             // txtLocationName
             // 
-            this.txtLocationName.Location = new System.Drawing.Point(453, 114);
+            this.txtLocationName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLocationName.Location = new System.Drawing.Point(453, 111);
             this.txtLocationName.Name = "txtLocationName";
-            this.txtLocationName.Size = new System.Drawing.Size(222, 20);
+            this.txtLocationName.Size = new System.Drawing.Size(222, 29);
             this.txtLocationName.TabIndex = 15;
             // 
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(453, 205);
+            this.txtAddress.Location = new System.Drawing.Point(460, 187);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(222, 128);
@@ -253,7 +259,8 @@ namespace menu
             // 
             this.lblAddAddress.AutoSize = true;
             this.lblAddAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddAddress.Location = new System.Drawing.Point(3, 90);
+            this.lblAddAddress.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblAddAddress.Location = new System.Drawing.Point(60, 90);
             this.lblAddAddress.Name = "lblAddAddress";
             this.lblAddAddress.Size = new System.Drawing.Size(80, 24);
             this.lblAddAddress.TabIndex = 31;
@@ -261,15 +268,17 @@ namespace menu
             // 
             // txtAddLocationName
             // 
+            this.txtAddLocationName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddLocationName.Location = new System.Drawing.Point(183, 44);
             this.txtAddLocationName.Name = "txtAddLocationName";
-            this.txtAddLocationName.Size = new System.Drawing.Size(222, 20);
+            this.txtAddLocationName.Size = new System.Drawing.Size(222, 29);
             this.txtAddLocationName.TabIndex = 31;
             // 
             // lblAddLocationName
             // 
             this.lblAddLocationName.AutoSize = true;
             this.lblAddLocationName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddLocationName.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblAddLocationName.Location = new System.Drawing.Point(3, 39);
             this.lblAddLocationName.Name = "lblAddLocationName";
             this.lblAddLocationName.Size = new System.Drawing.Size(137, 24);
@@ -278,9 +287,10 @@ namespace menu
             // 
             // txtLocationID
             // 
-            this.txtLocationID.Location = new System.Drawing.Point(453, 31);
+            this.txtLocationID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLocationID.Location = new System.Drawing.Point(453, 27);
             this.txtLocationID.Name = "txtLocationID";
-            this.txtLocationID.Size = new System.Drawing.Size(222, 20);
+            this.txtLocationID.Size = new System.Drawing.Size(222, 29);
             this.txtLocationID.TabIndex = 31;
             // 
             // pnlAddLocation
@@ -291,7 +301,7 @@ namespace menu
             this.pnlAddLocation.Controls.Add(this.txtAddLocationName);
             this.pnlAddLocation.Controls.Add(this.txtAddAddress);
             this.pnlAddLocation.Controls.Add(this.lblAddAddress);
-            this.pnlAddLocation.Location = new System.Drawing.Point(280, 24);
+            this.pnlAddLocation.Location = new System.Drawing.Point(280, 12);
             this.pnlAddLocation.Name = "pnlAddLocation";
             this.pnlAddLocation.Size = new System.Drawing.Size(460, 323);
             this.pnlAddLocation.TabIndex = 32;
@@ -302,7 +312,7 @@ namespace menu
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(73)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(781, 450);
+            this.ClientSize = new System.Drawing.Size(772, 450);
             this.Controls.Add(this.pnlAddLocation);
             this.Controls.Add(this.txtLocationID);
             this.Controls.Add(this.lblLocationID);

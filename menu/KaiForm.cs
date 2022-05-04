@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -105,12 +106,12 @@ namespace menu
             btnDown.Enabled = false;
             btnReturn.Enabled = false;
             cboAddEvent.Text = "";
-            txtAddKaiName.Text = null;
+            txtAddKaiName.Text = "";
             cbxAddPreparationRequired.Checked = false;
             nudAddPreparationTime.Value = 0;
-            nudAddServingQuantity.Value = 0;
-            pnlAddKai.Show();
+            nudAddServingQuantity.Value = 0;           
             LoadEvents();
+            pnlAddKai.Show();
         }
 
         ///<Summary> method: hasEvent
@@ -152,19 +153,19 @@ namespace menu
                 MessageBox.Show("You must choose an Event name", "Error");
                 return false;
             }
-            if (txtAddKaiName.Text.Trim() == "")
+            if (!Regex.IsMatch(txtAddKaiName.Text, @"^[a-zA-Z ]+$"))
             {
                 MessageBox.Show("You must enter a Kai name", "Error");
                 return false;
             }
             if (cbxAddPreparationRequired.Checked && (nudAddPreparationTime.Value <= 0 || nudAddPreparationTime.Value > 1000))
             {
-                MessageBox.Show("You must enter a valid Preparation Minutess that greater than 0 and less than 1000", "Error");
+                MessageBox.Show("You must enter a valid Preparation Minutess that is greater than 0 and less than 1000", "Error");
                 return false;
             }
             if (nudAddServingQuantity.Value <= 0 || nudAddServingQuantity.Value > 1000)
             {
-                MessageBox.Show("You must enter a valid Serving Quantity that greater than 0 and less than 1000", "Error");
+                MessageBox.Show("You must enter a valid Serving Quantity that is greater than 0 and less than 1000", "Error");
                 return false;
             }
             return true;
@@ -209,13 +210,13 @@ namespace menu
                     }
                     catch
                     {
-                        MessageBox.Show("Failed to delete Kai");
+                        MessageBox.Show("Failed to delete Kai", "Error");
                     }                    
                 }
             }
             else
             {
-                MessageBox.Show("You may only delete kai that have no event relation");
+                MessageBox.Show("You may only delete kai that have no event relation", "Error");
             }
         }
 
