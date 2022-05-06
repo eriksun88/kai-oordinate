@@ -57,6 +57,7 @@ namespace menu
         ///</Summary>
         private void printReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            int FirstNameAT = 0, LastNameAT = 150, PhoneAt = 300, HelperAt = 450;
             Graphics g = e.Graphics;
             int linesSoFarHeading = 0;
             Font textFont = new Font("Arial", 10, FontStyle.Regular);
@@ -71,33 +72,40 @@ namespace menu
             {
                 g.DrawString("Event ID: " + drEvent["EventID"].ToString(), headingFont, brush, leftMargin + headingLeftMargin,
                            topMargin + (linesSoFarHeading * textFont.Height));
-                linesSoFarHeading++;
+                linesSoFarHeading = linesSoFarHeading + 2;
                 g.DrawString("Event Name: " + drEvent["EventName"], headingFont, brush, leftMargin + headingLeftMargin,
                                topMargin + (linesSoFarHeading * textFont.Height));
-                linesSoFarHeading++;
-                g.DrawString("Date: " + drEvent["EventDate"], headingFont, brush, leftMargin + headingLeftMargin,
+                linesSoFarHeading = linesSoFarHeading + 2;
+                g.DrawString("Date: " + Convert.ToDateTime(drEvent["EventDate"]).ToString("dd/MM/yyyy"), headingFont, brush, leftMargin + headingLeftMargin,
                                topMargin + (linesSoFarHeading * textFont.Height));
-                linesSoFarHeading++;
+                linesSoFarHeading = linesSoFarHeading + 2;
 
                 DataRow drLocation = GetLocationByID(drEvent["LocationID"].ToString());
                 g.DrawString("Location: " + drLocation["LocationName"], headingFont, brush, leftMargin + headingLeftMargin,
                                topMargin + (linesSoFarHeading * textFont.Height));
-                linesSoFarHeading++;
+                linesSoFarHeading = linesSoFarHeading + 2;
                 g.DrawString("Address: " + drLocation["Address"], headingFont, brush, leftMargin + headingLeftMargin,
                                topMargin + (linesSoFarHeading * textFont.Height));
                 linesSoFarHeading = linesSoFarHeading + 2;
                 g.DrawString("Attendees:", headingFont, brush, leftMargin + headingLeftMargin,
                            topMargin + (linesSoFarHeading * textFont.Height));
                 linesSoFarHeading = linesSoFarHeading + 2;
-                g.DrawString("FirstName" + CreateSpace(20) + "LastName" + CreateSpace(20) + "Phone NO." + CreateSpace(20) + "Helper", headingFont, brush, leftMargin + headingLeftMargin,
-                topMargin + (linesSoFarHeading * textFont.Height));
+                g.DrawString("FirstName", headingFont, brush, leftMargin + headingLeftMargin + FirstNameAT, topMargin + (linesSoFarHeading * textFont.Height));
+                g.DrawString("LastName", headingFont, brush, leftMargin + headingLeftMargin + LastNameAT, topMargin + (linesSoFarHeading * textFont.Height));
+                g.DrawString("Phone NO.", headingFont, brush, leftMargin + headingLeftMargin + PhoneAt, topMargin + (linesSoFarHeading * textFont.Height));
+                g.DrawString("Helper", headingFont, brush, leftMargin + headingLeftMargin + HelperAt, topMargin + (linesSoFarHeading * textFont.Height));
                 linesSoFarHeading = linesSoFarHeading + 2;
 
                 foreach (DataRow drEventRegister in eventRegisterRows)
                 {
                     DataRow drWhanau = GetWhanauByID(drEventRegister["WhanauID"].ToString());
-                    g.DrawString(drWhanau["FirstName"] + CreateSpace(20) + drWhanau["LastName"] + CreateSpace(20) +
-                    drWhanau["Phone"] + CreateSpace(20) + drEventRegister["KaiPreparation"], textFont, brush, leftMargin + headingLeftMargin,
+                    g.DrawString(drWhanau["FirstName"].ToString(), textFont, brush, leftMargin + headingLeftMargin + FirstNameAT,
+                    topMargin + (linesSoFarHeading * textFont.Height));
+                    g.DrawString(drWhanau["LastName"].ToString(), textFont, brush, leftMargin + headingLeftMargin + LastNameAT,
+                    topMargin + (linesSoFarHeading * textFont.Height));
+                    g.DrawString(drWhanau["Phone"].ToString(), textFont, brush, leftMargin + headingLeftMargin + PhoneAt,
+                    topMargin + (linesSoFarHeading * textFont.Height));
+                    g.DrawString(drEventRegister["KaiPreparation"].ToString(), textFont, brush, leftMargin + headingLeftMargin + HelperAt,
                     topMargin + (linesSoFarHeading * textFont.Height));
                     linesSoFarHeading++;
                 }
